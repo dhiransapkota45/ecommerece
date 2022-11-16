@@ -5,14 +5,14 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/f
 const Footer = () => {
     return (
         <div className='w-full flex justify-center bg-[#393E46]'>
-            <div className=' w-4/5 flex gap-20 py-10'>
+            <div className=' w-4/5 flex flex-wrap gap-12 lg:gap-20 py-10'>
                 <div className=' flex flex-col gap-5'>
                     <div className='flex gap-2 items-center'>
                         <img src={Logo} alt="" />
                         <div className=' font-bold text-white'>mangcoding Store</div>
                     </div>
 
-                    <div className=' w-96 text-gray-300 '>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero laborum autem animi eveniet nihil atque eius corporis iure eaque suscipit ipsa temporibus magni, nam sequi. Quasi optio commodi facilis tempora!</div>
+                    <div className=' w-full sm:w-96 text-gray-300 '>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero laborum autem animi eveniet nihil atque eius corporis iure eaque suscipit ipsa temporibus magni, nam sequi. Quasi optio commodi facilis tempora!</div>
                     <div>
                         <button className=' p-2 font-bold text-purple-600 bg-white w-36'>Login Now</button>
                     </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import modelimage from "./assets/modelimage.png"
 const Models = () => {
   return (
-    <div className=' w-full flex justify-center pb-10 my-10'>
+    <div className=' w-full flex justify-center my-10'>
         <div className=' w-4/5 grid grid-cols-1 md:grid-cols-2'>
             <div className=' col-span-1 my-10 flex flex-col items-center md:items-start '>
                 <div className='text-black text-3xl font-bold'>Look For Models Now</div>

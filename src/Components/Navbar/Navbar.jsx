@@ -14,7 +14,7 @@ const Navbar = () => {
           <img src={Logo} alt="" />
           <div className=' font-bold ml-4 w-36'>mangcoding Store</div>
         </div>
-        <div className='flex gap-6 items-center font-semibold '>
+        <div className=' hidden lg:flex  gap-6 items-center font-semibold '>
           <NavLink to="/" > Home</NavLink>
           <NavLink to="/shop"> Shop</NavLink>
           <NavLink to="/about"> About Us</NavLink>
@@ -23,7 +23,7 @@ const Navbar = () => {
           <AiOutlineHeart className=' text-xl' />
           <CgProfile className=' text-xl ' />
           <div className=' flex items-center mx-6 border-2 p-2 rounded-md'>
-            <input className=' border-none overflow-hidden outline-none border w-52  ' type="text" placeholder='Search' />
+            {/* <input className=' border-none overflow-hidden outline-none border w-52  ' type="text" placeholder='Search' /> */}
             <FiSearch className='text-md  mr-4 text-gray-600' />
           </div>
         </div>

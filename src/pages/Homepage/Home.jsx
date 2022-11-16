@@ -4,6 +4,7 @@ import Categories from './Categories'
 import Oblongers from './Oblongers'
 import Products from './Products'
 import Testimonials from './Testimonials'
+import Models from './Models'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <Products />
       <Oblongers />
       <Testimonials />
+      <Models />
     </>
   )
 }

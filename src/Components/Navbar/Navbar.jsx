@@ -8,7 +8,7 @@ import { FiSearch } from "react-icons/fi"
 
 const Navbar = () => {
   return (
-    <div className='w-full shadow-lg sticky top-0 flex justify-center'>
+    <div className=' z-20 w-full shadow-lg sticky top-0 flex justify-center'>
       <div className='w-4/5  p-4 flex justify-between'>
         <div className='flex items-center'>
           <img src={Logo} alt="" />

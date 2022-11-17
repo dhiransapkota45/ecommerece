@@ -15,29 +15,30 @@ const Login = () => {
             <button className='flex p-2 bg-white text-black gap-3 w-32 items-center font-semibold'><FaFacebookF className='text-blue-600' />Facebook</button>
           </div>
 
-          <div className='mb-4'>
-            <div className=' font-bold mb-2 '>Email</div>
-            <input className=' w-full sm:w-96 p-2 text-black outline-none ' type="email" placeholder='Email' />
-          </div>
-          <div>
-            <div className='font-bold mb-2'>Password</div>
-            <input className=' w-full sm:w-96 p-2 text-black outline-none' type="password" placeholder='Password' />
-          </div>
-
-          <div className=' mt-4 w-full sm:w-96 flex justify-between'>
-            <div>
-              <input className=' mr-3' type="checkbox" name="" id="check" />
-              <label htmlFor="check" className=' font-bold'>Remember Me</label>
+          <form className=' w-full sm:w-96'>
+            <div className='mb-4'>
+              <div className=' font-bold mb-2 '>Email</div>
+              <input className=' w-full p-2 text-black outline-none ' type="email" placeholder='Email' />
             </div>
-            <button className=' font-bold'>
-              Forget Password?
-            </button>
-          </div>
+            <div>
+              <div className='font-bold mb-2'>Password</div>
+              <input className=' w-full p-2 text-black outline-none' type="password" placeholder='Password' />
+            </div>
 
-          <div className=' w-full sm:w-96 flex justify-end mt-6 '>
-            <button className=' text-purple-600 p-2 w-32 font-bold  bg-white'>Login</button>
-          </div>
+            <div className=' mt-4 flex justify-between'>
+              <div>
+                <input className=' mr-3' type="checkbox" name="" id="check" />
+                <label htmlFor="check" className=' font-bold'>Remember Me</label>
+              </div>
+              <button className=' font-bold'>
+                Forget Password?
+              </button>
+            </div>
 
+            <div className=' flex justify-end mt-6 '>
+              <button className=' text-purple-600 p-2 w-32 font-bold  bg-white'>Login</button>
+            </div>
+          </form>
         </div>
 
       </div>

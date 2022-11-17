@@ -2,7 +2,7 @@ import React from 'react'
 import tshirt from "./assets/Rectangle 7.png"
 const Oblongers = () => {
     return (
-        <div className=' w-full grid grid-cols-1 md:grid-cols-2 bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] pt-10 text-white'>
+        <div className=' w-full pb-12 grid grid-cols-1 md:grid-cols-2 bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] pt-10 text-white'>
             <div className=' col-span-1 flex justify-center'>
                 <img src={tshirt} alt="" />
             </div>

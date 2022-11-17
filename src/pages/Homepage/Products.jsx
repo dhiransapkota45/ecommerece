@@ -13,7 +13,7 @@ const Products = () => {
 
     return (
         <div className='flex flex-col items-center mb-14'>
-            <div className=' font-bold text-5xl my-6'>Our Best Seller Product</div>
+            <div className=' text-center font-bold text-5xl my-6'>Our Best Seller Product</div>
             <div className='flex gap-4'>
                 {products.map((product) => {
                     return (

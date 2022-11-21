@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import imagedata from './assets/imagedata'
-import dotIcon from "./assets/Ellipse 49.png"
+import { NavLink } from 'react-router-dom'
 import image1 from "./assets/image1.png"
 import Frame22 from "./assets/Frame 22.png"
 const Banner = () => {
@@ -19,9 +19,11 @@ const Banner = () => {
                             <div className=' text-white my-6'>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget gravida leo, nec iaculis diam. Nam bibendum mi sed sem finibus ullamcorper.
                             </div>
-                            <div>
-                                <button className=' text-purple-600 p-2 w-36 bg-white font-bold'>Shop Now</button>
-                            </div>
+                            <NavLink to="/shop" className=' text-center'>
+                                <div className='text-purple-600 p-2 w-36 bg-white font-bold'>
+                                    Shop Now
+                                </div>
+                            </NavLink>
                         </div>
                     </div>
 

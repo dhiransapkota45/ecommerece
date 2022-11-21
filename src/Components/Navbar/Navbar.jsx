@@ -21,7 +21,9 @@ const Navbar = () => {
           <NavLink to="/contact"> Contact</NavLink>
           <CiShoppingCart className=' text-xl' />
           <AiOutlineHeart className=' text-xl' />
-          <CgProfile className=' text-xl ' />
+          <NavLink to="/account">
+            <CgProfile className=' text-xl ' />
+          </NavLink>
           <div className=' flex items-center mx-6 border-2 p-2 rounded-md'>
             {/* <input className=' border-none overflow-hidden outline-none border w-52  ' type="text" placeholder='Search' /> */}
             <FiSearch className='text-md  mr-4 text-gray-600' />

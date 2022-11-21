@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import profiledata from './assets/profiledata'
 import { AiFillPlusCircle } from "react-icons/ai"
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Account = () => {
+    const dispatch = useDispatch()
+    const {authToken} = useSelector((store)=>store.signup)
     const { name, street, email, address, phone, gender, image } = profiledata
+    const navigate = useNavigate()
+    useEffect(()=>{
+        console.log(authToken);
+        if(authToken===null){
+            navigate("/login")
+        }else{
+            // navigate("/login")
+            console.log("hello");
+        }
+    },[])
     return (
         <div className='w-full '>
             <div className='h-96 relative md:clip-your-needful-style   bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] flex justify-center'>

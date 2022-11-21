@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from "./assets/Logo.png"
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa"
+import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
     return (
@@ -13,9 +14,9 @@ const Footer = () => {
                     </div>
 
                     <div className=' w-full sm:w-96 text-gray-300 '>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero laborum autem animi eveniet nihil atque eius corporis iure eaque suscipit ipsa temporibus magni, nam sequi. Quasi optio commodi facilis tempora!</div>
-                    <div>
+                    <NavLink to="/login">
                         <button className=' p-2 font-bold text-purple-600 bg-white w-36'>Login Now</button>
-                    </div>
+                    </NavLink>
                 </div>
 
                 <div className='flex flex-col  gap-6 text-white'>

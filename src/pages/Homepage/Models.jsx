@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import modelimage from "./assets/modelimage.png"
 const Models = () => {
   return (
@@ -10,7 +11,9 @@ const Models = () => {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, iure incidunt! Sequi rem debitis veniam quos voluptatibus blanditiis sint, earum dolores cumque voluptate voluptatum adipisci ipsa qui quam eos repudiandae!
                 </div>
                 <div className=' my-4'>
+                    <NavLink to="/login">
                     <button className='p-2 font-bold text-white bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] '>Login Now</button>
+                    </NavLink>
                 </div>
             </div>
             <div className=' col-span-1'>

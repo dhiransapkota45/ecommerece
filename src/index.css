@@ -3,7 +3,15 @@
 @tailwind utilities;
 
 @layer utilities {
-    .clip-your-needful-style {
-      clip-path: polygon(0 0, 100% 0, 100% 56%, 0% 100%);
-    }
+  .clip-your-needful-style {
+    clip-path: polygon(0 0, 100% 0, 100% 56%, 0% 100%);
   }
+}
+
+.sc-jSUZER .dQEjUh .rec .rec-carousel-wrapper{
+  @apply bg-red-700 flex flex-row
+}
+
+.rec .rec-arrow:hover{
+  background-color: green;
+}

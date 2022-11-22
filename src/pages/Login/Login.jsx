@@ -5,6 +5,9 @@ import { NavLink } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import { loginUser } from '../../redux/login/loginActionCreator'
+import { useDispatch } from 'react-redux'
+import { useState } from 'react'
 
 const schema = yup.object({
   email: yup.string().email("field should contain a valid email").required("email is required"),
@@ -12,11 +15,16 @@ const schema = yup.object({
 }).required();
 
 const Login = () => {
+  const dispatch = useDispatch()
+  const [checkbox, setCheckbox] = useState(false)
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
   });
 
-  const onSubmit = () => { }
+  const onSubmit = (data) => {
+    const fromdata = { ...data, checkbox }
+    dispatch(loginUser(fromdata))
+  }
   return (
     <div className=" bg-hero-pattern h-[600px] w-full flex justify-center ">
       <div className='grid grid-rows-2 w-4/5'>
@@ -44,7 +52,7 @@ const Login = () => {
 
             <div className=' mt-4 flex justify-between'>
               <div>
-                <input className=' mr-3' type="checkbox" name="" id="check" />
+                <input checked={checkbox} onChange={() => setCheckbox(!checkbox)} className=' mr-3' type="checkbox" name="" id="check" />
                 <label htmlFor="check" className=' font-bold'>Remember Me</label>
               </div>
               <button type='button' className=' font-bold'>

@@ -15,16 +15,17 @@ import Toastify from "./Components/Toast/Toastify";
 
 function App() {
   const navigate = useNavigate();
-  const { authToken, error } = useSelector((store) => store.signup);
+  const { authToken } = useSelector((store) => store.signup);
+  const {authTokenLogin} = useSelector((store)=>store.login)
 
   useEffect(() => {
     console.log(authToken);
-    if (authToken === null) {
+    if (authToken === null && authTokenLogin===null) {
       navigate("/login");
     } else {
       navigate("/account");
     }
-  }, [authToken]);
+  }, [authToken, authTokenLogin]);
 
   return (
     <div>

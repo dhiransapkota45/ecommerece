@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import title from './assets/title'
 import { IoOptionsSharp } from "react-icons/io5"
@@ -16,23 +16,27 @@ const Shop = () => {
     })
 
     const [filterValue, setFilterValue] = useState({
-        agegroup: "men",
-        price: "40",
-        color: "red",
-        size: "s",
+        agegroup: "all",
+        price: "200",
+        color: "all",
+        size: "all",
         category: "Jacket"
     })
 
     const submitHandler = (e) => {
+        console.log(filterValue);
         e.preventDefault()
         dispatch(getProduct(filterValue))
     }
+    useEffect(() => {
+        dispatch(getProduct(filterValue))
+    }, [])
 
-    const colors = ["blue", "red", "green", "yellow"]
+    const colors = ["blue", "red", "green", "yellow", "all"]
 
-    const sizes = ["s", "m", "l", "xl", "xxl"]
+    const sizes = ["s", "m", "l", "xl", "xxl", "all"]
 
-    const agegroup = ["men", "women", "other"]
+    const agegroup = ["men", "women", "other", "all"]
     return (
         <div>
             {/* banner */}
@@ -55,7 +59,7 @@ const Shop = () => {
             {/* main part */}
             <div className=' w-full my-12 flex justify-center'>
                 <div className=' w-4/5  grid grid-cols-12'>
-                    <form onSubmit={submitHandler} className=' col-span-3'>
+                    <form onSubmit={submitHandler} className=' col-span-12 md:col-span-3'>
                         <div className=' font-bold text-3xl mb-4'>T-Shirt </div>
                         <div className=' flex gap-4 items-center mb-7'>Filter <IoOptionsSharp className=' text-xl' /></div>
 
@@ -66,7 +70,7 @@ const Shop = () => {
                                 <div onClick={() => setDropdown({ ...dropdown, category: !dropdown.category })} className=' cursor-pointer'><FaAngleDown className={` -rotate-90 ${dropdown.category && "rotate-0"} duration-300`} /></div>
                             </div>
 
-                            <div className={` h-0 overflow-hidden ${dropdown.category && " h-8"} duration-300 mt-3 flex gap-8 mx-2`}>
+                            <div className={` h-0 overflow-hidden ${dropdown.category && " h-8"} duration-300 mt-3 flex gap-4 mx-2`}>
                                 {agegroup.map((category, index) => {
                                     return (
                                         <button type='button' onClick={() => setFilterValue({ ...filterValue, agegroup: category })} key={index} className={`border rounded px-2 ${category === filterValue.agegroup ? " bg-blue-400 text-white font-semibold" : " text-black "}`}>{category}</button>
@@ -140,7 +144,7 @@ const Shop = () => {
 
                         <button type=' submit' className=' p-2 w-32 font-bold bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] text-white my-4 rounded-md'>Apply Filter</button>
                     </form>
-                    <div className=' col-span-9 p-4'>
+                    <div className=' col-span-9'>
                         <Products />
                     </div>
                 </div>

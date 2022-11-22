@@ -6,10 +6,17 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const Account = () => {
     const dispatch = useDispatch()
-    const {authToken} = useSelector((store)=>store.signup)
+    const { authToken } = useSelector((store) => store.signup)
+    const { authTokenLogin } = useSelector((store) => store.login)
+
     const { name, street, email, address, phone, gender, image } = profiledata
     const navigate = useNavigate()
 
+    useEffect(() => {
+        if (authToken === null && authTokenLogin === null) {
+            navigate("/login")
+        }
+    }, [])
 
     return (
         <div className='w-full '>

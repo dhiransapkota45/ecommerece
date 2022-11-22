@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import title from './assets/title'
 import { IoOptionsSharp } from "react-icons/io5"
 import { FaAngleDown } from "react-icons/fa"
+import { getProduct } from "../../redux/product/productActionCreators"
+import Products from './Products'
 
 const Shop = () => {
+    const dispatch = useDispatch()
     const [dropdown, setDropdown] = useState({
         category: true,
         price: true,
@@ -13,29 +16,23 @@ const Shop = () => {
     })
 
     const [filterValue, setFilterValue] = useState({
-        category: "men",
-        price: "$40",
+        agegroup: "men",
+        price: "40",
         color: "red",
-        size: "s"
+        size: "s",
+        category: "Jacket"
     })
-    const { product } = useSelector((store) => store.product)
 
-    //these are use to extract product categories
-    // const categoriesWithDuplicates = []
-    // // color size agegroup
-    // const agegroupwithDuplicates = []
-    // const colorwithDuplicates = []
-    // const sizewithDuplicates = []
-    // product.map((product) => {
-    //     categoriesWithDuplicates.push(product.category)
-    //     agegroupwithDuplicates.push(product)
-    // })
-    // const categories = [...new Set(categoriesWithDuplicates)]
+    const submitHandler = (e) => {
+        e.preventDefault()
+        dispatch(getProduct(filterValue))
+    }
 
-    const colors = ["pink", "red", "green", "yellow"]
-    const [color, setColor] = useState("red")
-    const sizes = ["S", "M", "L", "XL", "XXL"]
-    const [size, setSize] = useState("S")
+    const colors = ["blue", "red", "green", "yellow"]
+
+    const sizes = ["s", "m", "l", "xl", "xxl"]
+
+    const agegroup = ["men", "women", "other"]
     return (
         <div>
             {/* banner */}
@@ -46,7 +43,7 @@ const Shop = () => {
                         {title.map((category) => {
                             return (
                                 <div className=' flex flex-col items-center'>
-                                    <img src={category.imgsrc} alt="" />
+                                    <img className={` cursor-pointer rounded-full border-opacity-0 border-blue-400 border-4 duration-300 ${category.name === filterValue.category ? " border-opacity-100  " : ""}`} onClick={() => { setFilterValue({ ...filterValue, category: category.name }) }} src={category.imgsrc} alt="" />
                                     <div className=' text-white font-semibold text-sm'>{category.name}</div>
                                 </div>
                             )
@@ -58,7 +55,7 @@ const Shop = () => {
             {/* main part */}
             <div className=' w-full my-12 flex justify-center'>
                 <div className=' w-4/5  grid grid-cols-12'>
-                    <div className=' col-span-3'>
+                    <form onSubmit={submitHandler} className=' col-span-3'>
                         <div className=' font-bold text-3xl mb-4'>T-Shirt </div>
                         <div className=' flex gap-4 items-center mb-7'>Filter <IoOptionsSharp className=' text-xl' /></div>
 
@@ -70,9 +67,11 @@ const Shop = () => {
                             </div>
 
                             <div className={` h-0 overflow-hidden ${dropdown.category && " h-8"} duration-300 mt-3 flex gap-8 mx-2`}>
-                                <button className=' border px-2'>Men</button>
-                                <button className=' border px-2'>Women</button>
-                                <button className=' border px-2'>Other</button>
+                                {agegroup.map((category, index) => {
+                                    return (
+                                        <button type='button' onClick={() => setFilterValue({ ...filterValue, agegroup: category })} key={index} className={`border rounded px-2 ${category === filterValue.agegroup ? " bg-blue-400 text-white font-semibold" : " text-black "}`}>{category}</button>
+                                    )
+                                })}
                             </div>
 
                             <div className=' w-full h-[1px] bg-gray-300 mt-2'></div>
@@ -86,10 +85,10 @@ const Shop = () => {
                             </div>
                             <div className={` h-0 duration-300 overflow-hidden ${dropdown.price && " h-12"}`}>
                                 <div>
-                                    <input className=' w-full' type="range" name="" id="" />
+                                    <input min="0" max="500" onChange={(e) => { setFilterValue({ ...filterValue, price: e.target.value }) }} value={filterValue.price} className=' w-full' type="range" name="" id="" />
                                 </div>
                                 <div className=' flex justify-between mx-6'>
-                                    <div>$40</div>
+                                    <div>${filterValue.price}</div>
                                     <div>$500</div>
                                 </div>
                             </div>
@@ -104,12 +103,12 @@ const Shop = () => {
                                 <div className=' cursor-pointer' onClick={() => setDropdown({ ...dropdown, color: !dropdown.color })}><FaAngleDown className={` -rotate-90 ${dropdown.color && "rotate-0"} duration-300`} /></div>
                             </div>
 
-                            <div className={` h-0 duration-300 overflow-hidden ${dropdown.color && " h-12"}  flex my-2 gap-4`}>
+                            <div className={` h-0 duration-300 overflow-hidden ${dropdown.color && " h-12"}  flex justify-center my-2 gap-6`}>
                                 {colors.map((colordiv, index) => {
                                     return (
 
-                                        <div key={index} className={` w-3 h-3 rounded-full bg-${colordiv}-500`}>
-                                        </div>
+                                        <button type='button' onClick={() => setFilterValue({ ...filterValue, color: colordiv })} key={index} className={` duration-300 font-semibold cursor-pointer ${colordiv === filterValue.color ? ` text-black` : " text-gray-300"} `}>{colordiv}
+                                        </button>
 
                                     )
                                 })}
@@ -126,11 +125,11 @@ const Shop = () => {
                                 <div className=' cursor-pointer' onClick={() => setDropdown({ ...dropdown, size: !dropdown.size })}><FaAngleDown className={` -rotate-90 ${dropdown.size && "rotate-0"} duration-300`} /></div>
                             </div>
                             <div className={` h-0 duration-300 overflow-hidden ${dropdown.size && " h-12"}  flex gap-8 mt-2 justify-center`}>
-                                {sizes.map((size) => {
+                                {sizes.map((size, index) => {
                                     return (
                                         <div className=' flex flex-col items-center'>
-                                            <div>{size}</div>
-                                            <div className=' w-3 h-3 mt-1 bg-gray-200 rounded-full'></div>
+                                            <div>{size.toUpperCase()}</div>
+                                            <button type='button' onClick={() => setFilterValue({ ...filterValue, size: size })} key={index} className={`w-3 h-3 mt-1 ${size === filterValue.size ? " bg-blue-500 duration-300  font-semibold" : " bg-gray-200"} rounded-full`}></button>
                                         </div>
                                     )
                                 })}
@@ -139,10 +138,10 @@ const Shop = () => {
 
                         </div>
 
-                        <button className=' p-2 w-32 font-bold bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] text-white my-4 rounded-md'>Apply Filter</button>
-                    </div>
-                    <div className=' col-span-9'>
-
+                        <button type=' submit' className=' p-2 w-32 font-bold bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] text-white my-4 rounded-md'>Apply Filter</button>
+                    </form>
+                    <div className=' col-span-9 p-4'>
+                        <Products />
                     </div>
                 </div>
             </div>

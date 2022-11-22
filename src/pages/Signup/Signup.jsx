@@ -31,7 +31,6 @@ const Signup = () => {
     const onSubmit = (data) => {
         const fromdata = { ...data, checkbox }
         dispatch(signupUser(fromdata))
-        navigate("/account")
     }
 
     return (

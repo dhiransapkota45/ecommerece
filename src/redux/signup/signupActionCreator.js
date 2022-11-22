@@ -23,13 +23,11 @@ const signupFailure = (error) => {
 const baseUrl = `http://localhost:8000`;
 
 export const signupUser = (data) => {
-  console.log(data);
   return function (dispatch) {
     dispatch(signupPending());
     axios
       .post(`${baseUrl}/signup`, data)
       .then((response) => {
-        console.log(response);
         dispatch(
           signupSuccess({
             authToken: response.data.authToken,

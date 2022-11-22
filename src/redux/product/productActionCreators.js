@@ -20,13 +20,14 @@ const productFailure = () => {
 };
 const baseUrl = `http://localhost:8000`;
 
-export const getProduct = () => {
+export const getProduct = (filterValue) => {
+  console.log(filterValue);
   return function (dispatch) {
     dispatch(productPending());
     axios
-      .get(`${baseUrl}/allproduct`)
+      .post(`${baseUrl}/allproduct`, filterValue)
       .then((response) => {
-        // console.log(response);
+        console.log(response);
         dispatch(productSuccess(response.data.product));
       })
       .catch(() => dispatch(productFailure));

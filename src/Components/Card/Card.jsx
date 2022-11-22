@@ -3,7 +3,7 @@ import star1 from "./assets/Star 3.png"
 import {AiOutlineHeart} from "react-icons/ai"
 import {FiBookmark} from "react-icons/fi"
 
-const Card = ({ link, title, price, star }) => {
+const Card = ({ image, name, price, star=5 }) => {
     const [hover, setHover] = useState(false)
 
     let stars = []
@@ -13,7 +13,7 @@ const Card = ({ link, title, price, star }) => {
     return (
         <div className=' rounded-md shadow-xl w-96'>
             <div className=' relative' onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
-                <img className=' w-full h-60 overflow-hidden' src={link} alt="" />
+                <img className=' w-full h-60 overflow-hidden' src={image} alt="" />
                 
                     <div className={`${hover ? "absolute" : "hidden"}  bottom-0 w-full bg-black bg-opacity-50 h-14`}>
                         <div className='text-white absolute right-3 top-2 border p-2'><FiBookmark  className=' text-xl '/></div>
@@ -22,7 +22,7 @@ const Card = ({ link, title, price, star }) => {
                     </div>
             </div>
             <div className='flex justify-between p-4 font-bold'>
-                <div>{title}</div>
+                <div>{name}</div>
                 <div>{price}</div>
             </div>
             <div className='px-4 text-gray-600'>Best quality</div>

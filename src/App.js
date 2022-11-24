@@ -12,15 +12,18 @@ import { useEffect } from "react";
 import Shop from "./pages/Shop/Shop";
 import { useNavigate } from "react-router-dom";
 import Toastify from "./Components/Toast/Toastify";
+import Item from "./pages/Item/Item";
+
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const navigate = useNavigate();
   const { authToken } = useSelector((store) => store.signup);
-  const {authTokenLogin} = useSelector((store)=>store.login)
+  const { authTokenLogin } = useSelector((store) => store.login);
 
   useEffect(() => {
     console.log(authToken);
-    if (authToken === null && authTokenLogin===null) {
+    if (authToken === null && authTokenLogin === null) {
       navigate("/login");
     } else {
       navigate("/account");
@@ -41,6 +44,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/item/:id" element={<Item />} />
       </Routes>
 
       <Footer />

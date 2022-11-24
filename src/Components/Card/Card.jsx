@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import star1 from "./assets/Star 3.png"
 import { AiOutlineHeart } from "react-icons/ai"
 import { FiBookmark } from "react-icons/fi"
+import { NavLink } from 'react-router-dom'
 
-const Card = ({ image, name, price, star = 5 }) => {
+const Card = ({ _id,image, name, price, star = 5 }) => {
     const [hover, setHover] = useState(false)
 
     let stars = []
@@ -21,12 +22,14 @@ const Card = ({ image, name, price, star = 5 }) => {
 
                 </div>
             </div>
-            <div className='flex justify-between p-4 font-bold'>
-                <div>{name}</div>
-                <div>${price}</div>
-            </div>
-            <div className='px-4 text-gray-600'>Best quality</div>
-            <div className='flex p-4'>{stars}</div>
+            <NavLink to={`/item/${_id}`}>
+                <div className='flex justify-between p-4 font-bold'>
+                    <div>{name}</div>
+                    <div>${price}</div>
+                </div>
+                <div className='px-4 text-gray-600'>Best quality</div>
+                <div className='flex p-4'>{stars}</div>
+            </NavLink>
         </div>
     )
 }

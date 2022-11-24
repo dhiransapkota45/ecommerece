@@ -5,13 +5,15 @@ import { FaShoppingCart } from "react-icons/fa"
 import { AiOutlineShoppingCart } from "react-icons/ai"
 import { HiOutlineMinus } from "react-icons/hi"
 import { GoPlus } from "react-icons/go"
-import { successToast } from '../../utils/toastify';
+import { useDispatch } from 'react-redux';
+import { addtoCart } from "../../redux/cart/cartActionCreator"
 
 
 
 const baseUrl = "http://localhost:8000"
 
 const Item = () => {
+    const dispatch = useDispatch()
     const { id } = useParams()
     // const [quantity, setQuantity] = useState(1)
 
@@ -30,6 +32,7 @@ const Item = () => {
     const onSubmitHandler = (e) => {
         e.preventDefault()
         console.log("hello");
+        dispatch(addtoCart())
     }
     useEffect(() => {
         const fetchItem = async () => {

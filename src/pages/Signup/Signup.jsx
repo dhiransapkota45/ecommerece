@@ -7,7 +7,6 @@ import * as yup from "yup";
 import { NavLink } from 'react-router-dom';
 import { signupUser } from '../../redux/signup/signupActionCreator';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object({
@@ -20,22 +19,19 @@ const schema = yup.object({
 
 
 const Signup = () => {
-    const navigate = useNavigate()
     const dispatch = useDispatch()
     const [checkbox, setCheckbox] = useState(false)
     const { register, handleSubmit, watch, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
 
-    const { loading, authToken, error } = useSelector((store) => store.signup)
+    const navigate = useNavigate()
     const onSubmit = (data) => {
-        const fromdata = { ...data, checkbox }
-        dispatch(signupUser(fromdata))
+        dispatch(signupUser(data, checkbox, navigate))
     }
 
     return (
         <>
-            {loading && "loading..."}
             <div className=" bg-hero-pattern h-[800px] w-full flex justify-center ">
                 <div className='grid grid-rows-2 w-4/5'>
                     <div className=' col-span-1 text-white'>

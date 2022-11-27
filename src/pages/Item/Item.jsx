@@ -5,9 +5,8 @@ import { FaShoppingCart } from "react-icons/fa"
 import { AiOutlineShoppingCart } from "react-icons/ai"
 import { HiOutlineMinus } from "react-icons/hi"
 import { GoPlus } from "react-icons/go"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addtoCart } from "../../redux/cart/cartActionCreator"
-
 
 
 const baseUrl = "http://localhost:8000"
@@ -26,14 +25,16 @@ const Item = () => {
         quantity: 1
     })
 
-    const [cartDetails, setCartDetails] = useState({
-        color: item?.color
-    })
+    // const authtoken = useSelector((store) => store.signup)
+    // const authtokenLogin = useSelector((store) => store.login)
+
     const onSubmitHandler = (e) => {
         e.preventDefault()
-        console.log("hello");
-        dispatch(addtoCart())
+        dispatch(addtoCart(activebuttons,  item._id))
     }
+
+
+
     useEffect(() => {
         const fetchItem = async () => {
 

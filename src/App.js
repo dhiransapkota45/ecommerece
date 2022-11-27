@@ -7,35 +7,16 @@ import Signup from "./pages/Signup/Signup";
 import Account from "./pages/Account/Account";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import Shop from "./pages/Shop/Shop";
-import { useNavigate } from "react-router-dom";
 import Toastify from "./Components/Toast/Toastify";
 import Item from "./pages/Item/Item";
-
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const navigate = useNavigate();
-  const { authToken } = useSelector((store) => store.signup);
-  const { authTokenLogin } = useSelector((store) => store.login);
-
-  useEffect(() => {
-    console.log(authToken);
-    if (authToken === null && authTokenLogin === null) {
-      navigate("/login");
-    } else {
-      navigate("/account");
-    }
-  }, [authToken, authTokenLogin]);
-
   return (
     <div>
       <Navbar />
-      <div className=" z-50">
-        <Toastify />
-      </div>
+      <Toastify />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

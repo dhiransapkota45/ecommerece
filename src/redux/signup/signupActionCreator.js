@@ -6,10 +6,9 @@ const signupPending = () => {
   };
 };
 
-const signupSuccess = (data) => {
+const signupSuccess = () => {
   return {
     type: "signup/success",
-    payload: data,
   };
 };
 
@@ -22,17 +21,21 @@ const signupFailure = (error) => {
 
 const baseUrl = `http://localhost:8000`;
 
-export const signupUser = (data) => {
+export const signupUser = (data, checkbox, navigate) => {
   return function (dispatch) {
     dispatch(signupPending());
     axios
       .post(`${baseUrl}/signup`, data)
       .then((response) => {
+        if (checkbox) {
+          localStorage.setItem("authToken", response.data.authToken);
+          navigate("/account");
+        } else {
+          sessionStorage.setItem("authToken", response.data.authToken);
+          navigate("/account");
+        }
         dispatch(
-          signupSuccess({
-            authToken: response.data.authToken,
-            checkbox: response.data.checkbox,
-          })
+          signupSuccess()
         );
       })
       .catch((error) => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { FcGoogle } from "react-icons/fc"
 import { FaFacebookF } from "react-icons/fa"
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -21,9 +21,10 @@ const Login = () => {
     resolver: yupResolver(schema)
   });
 
+  const navigate = useNavigate()
+
   const onSubmit = (data) => {
-    const fromdata = { ...data, checkbox }
-    dispatch(loginUser(fromdata))
+    dispatch(loginUser(data, checkbox, navigate))
   }
   return (
     <div className=" bg-hero-pattern h-[600px] w-full flex justify-center ">

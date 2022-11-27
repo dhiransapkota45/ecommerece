@@ -1,4 +1,4 @@
-import axios from "axios";
+import instance from "../../api/api_instance";
 
 const addtoCartPending = () => {
   return {
@@ -18,20 +18,22 @@ const addtoCartFailure = () => {
   };
 };
 
-const baseUrl = `http://localhost:8000`;
-
-export const addtoCart = (data) => {
-  return function (dispatch) {
+export const addtoCart = (data, id) => {
+  return async (dispatch) => {
     dispatch(addtoCartPending());
-    axios
-      .post(`${baseUrl}/addtocart`, data)
-      .then((response) => {
-        console.log(response);
-        dispatch(addtoCartSuccess());
-      })
-      .catch((error) => {
-        console.log(error);
-        dispatch(addtoCartFailure());
-      });
+    try {
+      const res = await instance.post(
+        `/addtocart/${
+          sessionStorage.getItem("authToken") ||
+          localStorage.getItem("authTOken")
+        }/${id}`,
+        data
+      );
+      // console.log(response);
+      dispatch(addtoCartSuccess());
+    } catch (error) {
+      console.log(error);
+      dispatch(addtoCartFailure());
+    }
   };
 };

@@ -6,10 +6,9 @@ const loginPending = () => {
   };
 };
 
-const loginSuccess = (data) => {
+const loginSuccess = () => {
   return {
     type: "login/success",
-    payload: data,
   };
 };
 
@@ -21,25 +20,28 @@ const loginFailure = (error) => {
 };
 
 export const emptyerror = () => {
-  return{
-    type:"login/error"
-  }
-}
+  return {
+    type: "login/error",
+  };
+};
 
 const baseUrl = `http://localhost:8000`;
 
-export const loginUser = (data) => {
+export const loginUser = (data, checkbox, navigate) => {
   return function (dispatch) {
     dispatch(loginPending());
     axios
       .post(`${baseUrl}/login`, data)
       .then((response) => {
-        dispatch(
-          loginSuccess({
-            authToken: response.data.authToken,
-            checkbox: response.data.checkbox,
-          })
-        );
+        console.log(response);
+        if (checkbox) {
+          localStorage.setItem("authToken", response.data.authToken);
+          navigate("/account");
+        } else {
+          sessionStorage.setItem("authToken", response.data.authToken);
+          navigate("/account");
+        }
+        dispatch(loginSuccess());
       })
       .catch((error) => {
         console.log(error.response.data.msg);

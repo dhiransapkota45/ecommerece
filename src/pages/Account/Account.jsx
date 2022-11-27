@@ -12,12 +12,19 @@ const Account = () => {
     const { name, street, email, address, phone, gender, image } = profiledata
     const navigate = useNavigate()
 
+    // useEffect(() => {
+    //     if (authToken === null && authTokenLogin === null) {
+    //         navigate("/login")
+    //     }
+    // }, [])
     useEffect(() => {
-        if (authToken === null && authTokenLogin === null) {
+        if (localStorage.getItem("authToken") || sessionStorage.getItem("authToken")) {
+            return
+        } else {
+
             navigate("/login")
         }
     }, [])
-
     return (
         <div className='w-full '>
             <div className='h-96 relative md:clip-your-needful-style   bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] flex justify-center'>

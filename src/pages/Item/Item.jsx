@@ -14,7 +14,6 @@ const baseUrl = "http://localhost:8000"
 const Item = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
-    // const [quantity, setQuantity] = useState(1)
 
     const [item, setItem] = useState({})
     const [featureImage, setFeatureImage] = useState(null)
@@ -25,15 +24,10 @@ const Item = () => {
         quantity: 1
     })
 
-    // const authtoken = useSelector((store) => store.signup)
-    // const authtokenLogin = useSelector((store) => store.login)
-
     const onSubmitHandler = (e) => {
         e.preventDefault()
-        dispatch(addtoCart(activebuttons,  item._id))
+        dispatch(addtoCart(activebuttons, item._id))
     }
-
-
 
     useEffect(() => {
         const fetchItem = async () => {

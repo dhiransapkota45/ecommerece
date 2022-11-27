@@ -11,6 +11,7 @@ import Shop from "./pages/Shop/Shop";
 import Toastify from "./Components/Toast/Toastify";
 import Item from "./pages/Item/Item";
 import "react-toastify/dist/ReactToastify.css";
+import Cart from "./pages/cart/Cart";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/item/:id" element={<Item />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
 
       <Footer />

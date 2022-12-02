@@ -40,7 +40,7 @@ const Account = () => {
                     <div className=' w-60 h-60 shadow-xl flex items-center justify-center bg-white text-black z-20 absolute -top-10 md:-top-60 right-0'>
                         <div className='flex flex-col items-center'>
                             <div className='w-24 rounded-full relative h-24 mb-3  bg-green-300'>
-                                <img className=' cursor-pointer  rounded-full w-full h-full overflow-hidden ' src={image} alt="" />
+                                <img className=' cursor-pointer object-cover  rounded-full w-full h-full overflow-hidden ' src={image} alt="" />
                                 <AiFillPlusCircle className='absolute top-10 text-2xl text-purple-600 right-10 bg-white rounded-full' />
                             </div>
                             <div className=' font-bold  my-1'>{name}</div>

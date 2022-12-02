@@ -15,3 +15,7 @@
 .rec .rec-arrow:hover{
   background-color: green;
 }
+
+.activenavlink{
+  @apply text-red-600
+}

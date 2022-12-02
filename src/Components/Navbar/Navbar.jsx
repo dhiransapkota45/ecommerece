@@ -1,7 +1,7 @@
 import React from 'react'
 import Logo from "./assets/Logo.png"
 import { NavLink } from 'react-router-dom'
-import { CiShoppingCart } from "react-icons/ci"
+import { FiShoppingCart } from "react-icons/fi"
 import { AiOutlineHeart } from "react-icons/ai"
 import { CgProfile } from "react-icons/cg"
 import { FiSearch } from "react-icons/fi"
@@ -16,11 +16,15 @@ const Navbar = () => {
         </div>
         <div className=' hidden lg:flex  gap-6 items-center font-semibold '>
           <NavLink to="/" > Home</NavLink>
-          <NavLink to="/shop"> Shop</NavLink>
+          <NavLink activeClassName="activenavlink" to="/shop"> Shop</NavLink>
           <NavLink to="/about"> About Us</NavLink>
           <NavLink to="/contact"> Contact</NavLink>
-          <CiShoppingCart className=' text-xl' />
-          <AiOutlineHeart className=' text-xl' />
+          <NavLink to="/cart" >
+            <FiShoppingCart className=' text-xl' />
+          </NavLink>
+          <NavLink to="/wishlist" >
+            <AiOutlineHeart className=' text-xl' />
+          </NavLink>
           <NavLink to="/account">
             <CgProfile className=' text-xl ' />
           </NavLink>

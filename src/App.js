@@ -11,7 +11,7 @@ import Shop from "./pages/Shop/Shop";
 import Toastify from "./Components/Toast/Toastify";
 import Item from "./pages/Item/Item";
 import "react-toastify/dist/ReactToastify.css";
-import Cart from "./pages/cart/Cart";
+import Cart from "./pages/Cart/Cart";
 
 function App() {
   return (

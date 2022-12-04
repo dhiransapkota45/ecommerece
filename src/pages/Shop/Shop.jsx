@@ -9,10 +9,11 @@ import Products from './Products'
 const Shop = () => {
     const dispatch = useDispatch()
     const [dropdown, setDropdown] = useState({
-        category: true,
-        price: true,
-        color: true,
-        size: true
+        filter: true,
+        category: false,
+        price: false,
+        color: false,
+        size: false
     })
 
     const [filterValue, setFilterValue] = useState({
@@ -58,91 +59,101 @@ const Shop = () => {
 
             {/* main part */}
             <div className=' w-full my-12 flex justify-center'>
-                <div className=' w-4/5  grid grid-cols-12'>
-                    <form onSubmit={submitHandler} className=' col-span-12 md:col-span-3'>
+                <div className=' w-4/5  grid grid-cols-12 '>
+                    <form onSubmit={submitHandler} className=' col-span-12 md:col-span-3 sticky top-[66px] border-b z-20 p-4 bg-white'>
                         <div className=' font-bold text-3xl mb-4'>T-Shirt </div>
-                        <div className=' flex gap-4 items-center mb-7'>Filter <IoOptionsSharp className=' text-xl' /></div>
+                        <div className='mb-7 flex justify-between'>
 
-                        {/* category filter */}
-                        <div>
-                            <div className=' flex justify-between items-center'>
-                                <div className=' font-semibold'>Categories</div>
-                                <div onClick={() => setDropdown({ ...dropdown, category: !dropdown.category })} className=' cursor-pointer'><FaAngleDown className={` -rotate-90 ${dropdown.category && "rotate-0"} duration-300`} /></div>
-                            </div>
-
-                            <div className={` h-0 overflow-hidden ${dropdown.category && " h-8"} duration-300 mt-3 flex gap-4 mx-2`}>
-                                {agegroup.map((category, index) => {
-                                    return (
-                                        <button type='button' onClick={() => setFilterValue({ ...filterValue, agegroup: category })} key={index} className={`border rounded px-2 ${category === filterValue.agegroup ? " bg-blue-400 text-white font-semibold" : " text-black "}`}>{category}</button>
-                                    )
-                                })}
-                            </div>
-
-                            <div className=' w-full h-[1px] bg-gray-300 mt-2'></div>
+                            <div className='flex gap-4 items-center  '>Filter <IoOptionsSharp className=' text-xl' /></div>
+                            <button className={`${dropdown.filter ? " rotate-0" : " -rotate-90"} duration-300`} onClick={() => setDropdown({ ...dropdown, filter: !dropdown.filter })}><FaAngleDown /></button>
                         </div>
 
-                        {/* price Filter */}
-                        <div className=' mt-3'>
-                            <div className=' flex justify-between'>
-                                <div className=' mb-1 font-semibold'>Price</div>
-                                <div className=' cursor-pointer' onClick={() => setDropdown({ ...dropdown, price: !dropdown.price })}><FaAngleDown className={`  -rotate-90 ${dropdown.price && "rotate-0"} duration-300`} /></div>
-                            </div>
-                            <div className={` h-0 duration-300 overflow-hidden ${dropdown.price && " h-12"}`}>
-                                <div>
-                                    <input min="0" max="500" onChange={(e) => { setFilterValue({ ...filterValue, price: e.target.value }) }} value={filterValue.price} className=' w-full' type="range" name="" id="" />
+                        {dropdown.filter &&
+
+                            <div className=''>
+                                {/* category filter */}
+                                <div className=''>
+                                    <div className=' flex justify-between items-center'>
+                                        <div className=' text-sm sm:text-base font-semibold '>Categories</div>
+                                        <div onClick={() => setDropdown({ ...dropdown, category: !dropdown.category })} className=' cursor-pointer'><FaAngleDown className={`  ${dropdown.category ? "rotate-0" : "-rotate-90"} duration-300`} /></div>
+                                    </div>
+
+                                    <div className={` h-0 overflow-hidden ${dropdown.category && " h-8"} duration-300 mt-1 md:mt-3 flex gap-4 mx-2`}>
+                                        {agegroup.map((category, index) => {
+                                            return (
+                                                <button type='button' onClick={() => setFilterValue({ ...filterValue, agegroup: category })} key={index} className={`border rounded px-2 ${category === filterValue.agegroup ? " bg-blue-400 text-white font-semibold" : " text-black "}`}>{category}</button>
+                                            )
+                                        })}
+                                    </div>
+
+                                    <div className=' w-full h-[1px] bg-gray-300 mt-2'></div>
                                 </div>
-                                <div className=' flex justify-between mx-6'>
-                                    <div>${filterValue.price}</div>
-                                    <div>$500</div>
-                                </div>
-                            </div>
-                            <div className=' w-full h-[1px] bg-gray-300 mt-2'></div>
 
-                        </div>
-
-                        {/* color filter */}
-                        <div className=' mt-3'>
-                            <div className=' flex justify-between'>
-                                <div className=' mb-1 font-semibold'>Color</div>
-                                <div className=' cursor-pointer' onClick={() => setDropdown({ ...dropdown, color: !dropdown.color })}><FaAngleDown className={` -rotate-90 ${dropdown.color && "rotate-0"} duration-300`} /></div>
-                            </div>
-
-                            <div className={` h-0 duration-300 overflow-hidden ${dropdown.color && " h-12"}  flex justify-center my-2 gap-6`}>
-                                {colors.map((colordiv, index) => {
-                                    return (
-
-                                        <button type='button' onClick={() => setFilterValue({ ...filterValue, color: colordiv })} key={index} className={` duration-300 font-semibold cursor-pointer ${colordiv === filterValue.color ? ` text-black` : " text-gray-300"} `}>{colordiv}
-                                        </button>
-
-                                    )
-                                })}
-                            </div>
-
-                            <div className=' w-full h-[1px] bg-gray-300 mt-2'></div>
-
-                        </div>
-
-                        {/* size filter */}
-                        <div>
-                            <div className=' flex justify-between mt-3 '>
-                                <div className=' font-semibold'>Size</div>
-                                <div className=' cursor-pointer' onClick={() => setDropdown({ ...dropdown, size: !dropdown.size })}><FaAngleDown className={` -rotate-90 ${dropdown.size && "rotate-0"} duration-300`} /></div>
-                            </div>
-                            <div className={` h-0 duration-300 overflow-hidden ${dropdown.size && " h-12"}  flex gap-8 mt-2 justify-center`}>
-                                {sizes.map((size, index) => {
-                                    return (
-                                        <div className=' flex flex-col items-center'>
-                                            <div>{size.toUpperCase()}</div>
-                                            <button type='button' onClick={() => setFilterValue({ ...filterValue, size: size })} key={index} className={`w-3 h-3 mt-1 ${size === filterValue.size ? " bg-blue-500 duration-300  font-semibold" : " bg-gray-200"} rounded-full`}></button>
+                                {/* price Filter */}
+                                <div className=' mt-3'>
+                                    <div className=' flex justify-between'>
+                                        <div className='text-sm sm:text-base mb-1 font-semibold'>Price</div>
+                                        <div className=' cursor-pointer' onClick={() => setDropdown({ ...dropdown, price: !dropdown.price })}><FaAngleDown className={` ${dropdown.price ? "rotate-0" : "-rotate-90"} duration-300`} /></div>
+                                    </div>
+                                    <div className={` h-0 duration-300 overflow-hidden ${dropdown.price && " h-12"}`}>
+                                        <div>
+                                            <input min="0" max="500" onChange={(e) => { setFilterValue({ ...filterValue, price: e.target.value }) }} value={filterValue.price} className=' w-full' type="range" name="" id="" />
                                         </div>
-                                    )
-                                })}
+                                        <div className=' flex justify-between mx-6'>
+                                            <div>${filterValue.price}</div>
+                                            <div>$500</div>
+                                        </div>
+                                    </div>
+                                    <div className=' w-full h-[1px] bg-gray-300 mt-2'></div>
+
+                                </div>
+
+                                {/* color filter */}
+                                <div className=' mt-3'>
+                                    <div className=' flex justify-between'>
+                                        <div className='text-sm sm:text-base mb-1 font-semibold'>Color</div>
+                                        <div className=' cursor-pointer' onClick={() => setDropdown({ ...dropdown, color: !dropdown.color })}><FaAngleDown className={` ${dropdown.color ? "rotate-0" : "-rotate-90"} duration-300`} /></div>
+                                    </div>
+
+                                    <div className={` h-0 duration-300 overflow-hidden ${dropdown.color && " h-12"}  flex justify-center my-2 gap-6`}>
+                                        {colors.map((colordiv, index) => {
+                                            return (
+
+                                                <button type='button' onClick={() => setFilterValue({ ...filterValue, color: colordiv })} key={index} className={` duration-300 font-semibold cursor-pointer ${colordiv === filterValue.color ? ` text-black` : " text-gray-300"} `}>{colordiv}
+                                                </button>
+
+                                            )
+                                        })}
+                                    </div>
+
+                                    <div className=' w-full h-[1px] bg-gray-300 mt-2'></div>
+
+                                </div>
+
+                                {/* size filter */}
+                                <div>
+                                    <div className=' flex justify-between mt-3 '>
+                                        <div className='text-sm sm:text-base font-semibold'>Size</div>
+                                        <div className=' cursor-pointer' onClick={() => setDropdown({ ...dropdown, size: !dropdown.size })}><FaAngleDown className={` ${dropdown.size ? "rotate-0" : "-rotate-90"} duration-300`} /></div>
+                                    </div>
+                                    <div className={` h-0 duration-300 overflow-hidden ${dropdown.size && " h-12"}  flex gap-8 mt-2 justify-center`}>
+                                        {sizes.map((size, index) => {
+                                            return (
+                                                <div className=' flex flex-col items-center'>
+                                                    <div>{size.toUpperCase()}</div>
+                                                    <button type='button' onClick={() => setFilterValue({ ...filterValue, size: size })} key={index} className={`w-3 h-3 mt-1 ${size === filterValue.size ? " bg-blue-500 duration-300  font-semibold" : " bg-gray-200"} rounded-full`}></button>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                    <div className=' w-full h-[1px] bg-gray-300 mt-2'></div>
+
+                                </div>
+                                <button type=' submit' className=' p-2 w-32 font-bold bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] text-white my-4 rounded-md'>Apply Filter</button>
                             </div>
-                            <div className=' w-full h-[1px] bg-gray-300 mt-2'></div>
+                        }
 
-                        </div>
 
-                        <button type=' submit' className=' p-2 w-32 font-bold bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] text-white my-4 rounded-md'>Apply Filter</button>
                     </form>
                     <div className=' col-span-9'>
                         <Products />

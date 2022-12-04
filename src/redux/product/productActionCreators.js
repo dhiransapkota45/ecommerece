@@ -21,13 +21,11 @@ const productFailure = () => {
 const baseUrl = `http://localhost:8000`;
 
 export const getProduct = (filterValue) => {
-  console.log(filterValue);
   Object.keys(filterValue).forEach((key) => {
     if (filterValue[key] === "all") {
       delete filterValue[key];
     }
   });
-  console.log(filterValue);
 
   return function (dispatch) {
     dispatch(productPending());

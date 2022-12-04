@@ -7,11 +7,13 @@ import { HiOutlineMinus } from "react-icons/hi"
 import { GoPlus } from "react-icons/go"
 import { useDispatch, useSelector } from 'react-redux';
 import { addtoCart } from "../../redux/cart/cartActionCreator"
-
+import {  useNavigate } from 'react-router-dom';
+import instance from '../../api/api_instance';
 
 const baseUrl = "http://localhost:8000"
 
 const Item = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const { id } = useParams()
 
@@ -30,16 +32,34 @@ const Item = () => {
     }
 
     useEffect(() => {
-        const fetchItem = async () => {
+        if (localStorage.getItem("authToken") || sessionStorage.getItem("authToken")) {
+            const fetchItem = async () => {
 
-            const item = await axios.get(`${baseUrl}/item/${id}`)
+                const item = await instance.get(`/item/${id}`)
 
-            setItem(item.data.item)
-            console.log(item);
-            setFeatureImage(item.data.item.image)
+                setItem(item.data.item)
+                console.log(item);
+                setFeatureImage(item.data.item.image)
+            }
+            fetchItem()
+        } else {
+            console.log("reached here");
+            // return redirect("/login")
+            navigate("/login")
         }
-        fetchItem()
     }, [])
+
+    // useEffect(() => {
+    //     const fetchItem = async () => {
+
+    //         const item = await axios.get(`${baseUrl}/item/${id}`)
+
+    //         setItem(item.data.item)
+    //         console.log(item);
+    //         setFeatureImage(item.data.item.image)
+    //     }
+    //     fetchItem()
+    // }, [])
 
     console.log(item.color);
 

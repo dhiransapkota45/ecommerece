@@ -5,12 +5,19 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Account = () => {
-    const dispatch = useDispatch()
-    const { authToken } = useSelector((store) => store.signup)
-    const { authTokenLogin } = useSelector((store) => store.login)
+    // const dispatch = useDispatch()
+    // const { authToken } = useSelector((store) => store.signup)
+    // const { authTokenLogin } = useSelector((store) => store.login)
 
     const { name, street, email, address, phone, gender, image } = profiledata
     const navigate = useNavigate()
+
+
+    const logoutHandler = () => {
+        localStorage.clear()
+        sessionStorage.clear()
+        navigate("/login")
+    }
 
     // useEffect(() => {
     //     if (authToken === null && authTokenLogin === null) {
@@ -76,8 +83,9 @@ const Account = () => {
                         </div>
                     </div>
 
-                    <div className=''>
+                    <div className=' flex gap-4 flex-wrap'>
                         <button className='bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] font-bold text-white ml-6 p-2 w-40'>Update</button>
+                        <button onClick={logoutHandler} className='bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] font-bold text-white ml-6 p-2 w-40'>Logout</button>
                     </div>
                 </form>
             </div>

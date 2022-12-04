@@ -14,7 +14,7 @@ const Navbar = () => {
           <img src={Logo} alt="" />
           <div className=' font-bold ml-4 w-36'>mangcoding Store</div>
         </div>
-        <div className=' hidden lg:flex  gap-6 items-center font-semibold '>
+        <div className=' flex  gap-6 items-center font-semibold '>
           <NavLink to="/" > Home</NavLink>
           <NavLink activeClassName="activenavlink" to="/shop"> Shop</NavLink>
           <NavLink to="/about"> About Us</NavLink>

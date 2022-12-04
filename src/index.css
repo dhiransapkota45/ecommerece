@@ -16,6 +16,10 @@
   background-color: green;
 }
 
-.activenavlink{
-  @apply text-red-600
+#mainnav .active{
+  @apply text-blue-600 font-bold border-opacity-100 border-b-2  border-blue-600
+}
+
+#offcanvas .active{
+  @apply bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] rounded-md text-white duration-300
 }

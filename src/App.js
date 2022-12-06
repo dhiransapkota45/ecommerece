@@ -12,6 +12,36 @@ import Toastify from "./Components/Toast/Toastify";
 import Item from "./pages/Item/Item";
 import "react-toastify/dist/ReactToastify.css";
 import Cart from "./pages/Cart/Cart";
+import PageNotFound from "./pages/Error/PageNotFound";
+import Wishlist from "./pages/Wishlist/Wishlist";
+
+// const Pages = () => {
+//   return (
+//     <>
+//       <Navbar />
+//       <Toastify />
+//       <Routes>
+//         <Route path="/">
+//           <Route path="" element={<Home />} />
+//           <Route path="login" element={<Login />} />
+//           <Route path="signup" element={<Signup />} />
+//           <Route path="account" element={<Account />} />
+//           <Route path="about" element={<About />} />
+//           <Route path="contact" element={<Contact />} />
+//           <Route path="shop" element={<Shop />} />
+//           <Route path="item/:id" element={<Item />} />
+//           <Route path="cart" element={<Cart />} />
+//           <Route path="*" element={<PageNotFound />} />
+//         </Route>
+//       </Routes>
+//       <Footer />
+//     </>
+//   );
+// };
+
+const Error = () => {
+  return <div>Error</div>;
+};
 
 function App() {
   return (
@@ -19,18 +49,29 @@ function App() {
       <Navbar />
       <Toastify />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/item/:id" element={<Item />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
+        <Route path="/">
+          <Route path="" element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="account" element={<Account />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="item/:id" element={<Item />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="wishlist" element={<Wishlist />} />
+          <Route path="*" element={<PageNotFound />} />
 
+        </Route>
+      </Routes>
       <Footer />
+
+      {/* <Routes>
+        <Route path="/">
+          <Route path="/" element={<Pages />} />
+          <Route path="*" element={<Error />} />
+        </Route>
+      </Routes> */}
     </div>
   );
 }

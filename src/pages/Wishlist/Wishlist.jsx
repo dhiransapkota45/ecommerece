@@ -28,7 +28,6 @@ const Wishlist = () => {
         localStorage.setItem("wishlistproducts", JSON.stringify(localStoragearray))
     }
 
-    console.log(wishlistdata);
 
     useEffect(() => {
         if (localStorage.getItem("authToken") || sessionStorage.getItem("authToken")) {

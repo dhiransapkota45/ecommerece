@@ -1,7 +1,9 @@
 import { successToast } from "../../utils/toastify";
+import { errorToast } from "../../utils/errorToast";
 
 const initialState = {
   loading: false,
+  error: false,
 };
 
 const addtoCartReducer = (state = initialState, action) => {
@@ -9,11 +11,11 @@ const addtoCartReducer = (state = initialState, action) => {
     case "addtoCart/pending":
       return { ...state, loading: true };
     case "addtoCart/success":
-      successToast("item added successfully");
+      successToast("Item added successfully");
       return { ...state };
     case "addtoCart/failure":
-      successToast("some error occured");
-      return { ...state, loadingLogin: false, errorLogin: action.payload };
+      errorToast(action.payload);
+      return { ...state, loading: false, error: action.payload };
     default:
       return { ...state };
   }

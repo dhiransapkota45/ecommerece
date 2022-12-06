@@ -23,3 +23,7 @@
 #offcanvas .active{
   @apply bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] rounded-md text-white duration-300
 }
+
+.btn{
+  @apply bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] text-white p-2
+}

@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react';
 import { RiDeleteBin6Line } from "react-icons/ri"
-import { HiOutlineMinus } from 'react-icons/hi'
-import  {GoPlus} from "react-icons/go"
 import Counter from '../../Components/Counter/Counter'
 
-import { incrementItem, decrementItem } from '../../redux/cart/changeCartNumber'
-import { useSelector, useDispatch } from 'react-redux'
-
 const Products = ({ cartdetails }) => {
-    const [value, setValue] = useState()
+    // console.log(cartdetails);
+    const [total, setTotal] = useState(0)
+
+    useEffect(() => {
+        setTotal(cartdetails.reduce((accumulator, currentValue) => {
+            // console.log(currentValue);
+            return accumulator + currentValue.cartItems.quantity * currentValue.productdetails.price
+        }, 0))
+    }, [cartdetails])
+
     return (
         <div className=' grid grid-cols-12 gap-4'>
             {cartdetails.length === 0 ?
@@ -44,7 +49,7 @@ const Products = ({ cartdetails }) => {
                                         </button>
                                     </div>
 
-                                    <Counter count={data.cartItems.quantity} {...data.productdetails} />
+                                    <Counter setTotal={setTotal} count={data.cartItems.quantity} {...data.productdetails} />
                                     {/* <div className='flex font-bold text-xl justify-end'>
                                         <div className=' flex gap-4 bg-white p-2 w-40 justify-between '>
                                             <button className={`${ "text-gray-400"}`} disabled={value === 1} onClick={()=>{}}><HiOutlineMinus /></button>
@@ -61,8 +66,16 @@ const Products = ({ cartdetails }) => {
                 </div>
             }
 
-            <div className=' col-span-4'>
-
+            <div className=' col-span-4  my-4  '>
+                <div className=' px-4 py-8 flex flex-col gap-8 bg-gray-100'>
+                    <div className=' flex  justify-between'>
+                        <div className=' font-bold'>Total</div>
+                        <div className=' font-semibold'>${total}USD</div>
+                    </div>
+                    <div className=' flex justify-end '>
+                        <button className=' btn w-36 font-bold'>Checkout</button>
+                    </div>
+                </div>
             </div>
         </div>
     )

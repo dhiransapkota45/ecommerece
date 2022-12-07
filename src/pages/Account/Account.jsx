@@ -19,11 +19,6 @@ const Account = () => {
         navigate("/login")
     }
 
-    // useEffect(() => {
-    //     if (authToken === null && authTokenLogin === null) {
-    //         navigate("/login")
-    //     }
-    // }, [])
     useEffect(() => {
         if (localStorage.getItem("authToken") || sessionStorage.getItem("authToken")) {
             return

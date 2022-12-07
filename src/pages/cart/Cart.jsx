@@ -28,7 +28,7 @@ const Cart = () => {
         <div className=' font-semibold text-3xl my-8'>
           Cart Product
         </div>
-        <Products cartdetails={cartdetails} />
+        <Products setCartdetails={setCartdetails} cartdetails={cartdetails} />
 
       </div>
     </div>

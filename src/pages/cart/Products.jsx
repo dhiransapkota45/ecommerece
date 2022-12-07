@@ -2,10 +2,23 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { RiDeleteBin6Line } from "react-icons/ri"
 import Counter from '../../Components/Counter/Counter'
+import instance from "../../api/api_instance"
+import { successToast } from '../../utils/toastify';
+import { errorToast } from '../../utils/errorToast';
 
-const Products = ({ cartdetails }) => {
-    // console.log(cartdetails);
+const Products = ({ cartdetails, setCartdetails }) => {
     const [total, setTotal] = useState(0)
+
+    const deleteCartitems = async (id) => {
+        const response = await instance.put(`/deletecart/${id}`)
+        if (response.data.success) {
+            let data = cartdetails.filter((data) => data.productdetails._id !== id)
+            setCartdetails(data)
+            successToast(response.data.msg)
+        } else {
+            errorToast(response.data.msg)
+        }
+    }
 
     useEffect(() => {
         setTotal(cartdetails.reduce((accumulator, currentValue) => {
@@ -17,7 +30,7 @@ const Products = ({ cartdetails }) => {
     return (
         <div className=' grid grid-cols-12 gap-4'>
             {cartdetails.length === 0 ?
-                <div>No items in cart</div>
+                <div className=' col-span-8 mb-16'>No items in cart</div>
                 :
                 <div className=' col-span-8'>
                     {
@@ -44,40 +57,32 @@ const Products = ({ cartdetails }) => {
                                             <div className='text-gray-400 text-sm'>In Stock</div>
 
                                         </div>
-                                        <button className=' h-fit text-gray-400'>
+                                        <button onClick={() => deleteCartitems(data.productdetails._id)} className=' h-fit text-gray-400'>
                                             <RiDeleteBin6Line />
                                         </button>
                                     </div>
 
                                     <Counter setTotal={setTotal} count={data.cartItems.quantity} {...data.productdetails} />
-                                    {/* <div className='flex font-bold text-xl justify-end'>
-                                        <div className=' flex gap-4 bg-white p-2 w-40 justify-between '>
-                                            <button className={`${ "text-gray-400"}`} disabled={value === 1} onClick={()=>{}}><HiOutlineMinus /></button>
-                                            <div>
-                                                {data.value}
-                                            </div>
-                                            <button className={`${ "text-gray-400"}`} disabled={value === data.stock} onClick={()=>{}}><GoPlus /></button>
-                                        </div>
-                                    </div> */}
                                 </div>
                             )
                         })
                     }
                 </div>
             }
-
-            <div className=' col-span-4  my-4  '>
-                <div className=' px-4 py-8 flex flex-col gap-8 bg-gray-100'>
-                    <div className=' flex  justify-between'>
-                        <div className=' font-bold'>Total</div>
-                        <div className=' font-semibold'>${total}USD</div>
-                    </div>
-                    <div className=' flex justify-end '>
-                        <button className=' btn w-36 font-bold'>Checkout</button>
+            {cartdetails.length > 0 &&
+                < div className=' col-span-4  my-4  '>
+                    <div className=' px-4 py-8 flex flex-col gap-8 bg-gray-100'>
+                        <div className=' flex  justify-between'>
+                            <div className=' font-bold'>Total</div>
+                            <div className=' font-semibold'>${total}USD</div>
+                        </div>
+                        <div className=' flex justify-end '>
+                            <button className=' btn w-36 font-bold'>Checkout</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            }
+        </div >
     )
 }
 

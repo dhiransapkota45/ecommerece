@@ -6,10 +6,15 @@ import { FiShoppingCart } from "react-icons/fi"
 import { AiOutlineHeart } from "react-icons/ai"
 import { CgProfile } from "react-icons/cg"
 import { FiSearch } from "react-icons/fi"
+import { useContext } from 'react'
+import { CartCountContext } from "../../context/cartcount"
 
 import Sidenav from './Sidenav'
 
 const Navbar = () => {
+  const { cartnumber } = useContext(CartCountContext)
+  console.log(cartnumber);
+
   const [hamburger, setHamburger] = useState(false)
   return (
     <div className=' z-30 bg-white w-full shadow-lg sticky top-0 flex justify-center'>
@@ -25,6 +30,7 @@ const Navbar = () => {
           <NavLink className=" " to="/contact"> Contact</NavLink>
           <NavLink className=" " to="/cart" >
             <FiShoppingCart className=' text-xl' />
+            {cartnumber}
           </NavLink>
           <NavLink className=" " to="/wishlist" >
             <AiOutlineHeart className=' text-xl' />

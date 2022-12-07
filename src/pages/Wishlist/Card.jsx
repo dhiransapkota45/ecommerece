@@ -5,7 +5,11 @@ import { RiDeleteBin6Line } from "react-icons/ri"
 import { useDispatch, useSelector } from 'react-redux'
 import { addtoCart } from '../../redux/cart/cartActionCreator'
 
+import { useContext } from 'react'
+import { CartCountContext } from "../../context/cartcount"
+
 const Card = ({ image, name, price, size, stock, color, deleteHandler, _id }) => {
+    const { setCountnumber } = useContext(CartCountContext)
     const [itemdetails, setItemdetails] = useState({
         color: color[0],
         size: size[0],
@@ -16,7 +20,7 @@ const Card = ({ image, name, price, size, stock, color, deleteHandler, _id }) =>
     // console.log(itemdetails);
 
     const onsubmithandler = () => {
-        dispatch(addtoCart(itemdetails, _id, deleteHandler))
+        dispatch(addtoCart(itemdetails, _id, deleteHandler, setCountnumber))
     }
 
     return (

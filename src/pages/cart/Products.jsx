@@ -13,7 +13,7 @@ const Products = ({ cartdetails, setCartdetails }) => {
         const response = await instance.put(`/deletecart/${id}`)
         if (response.data.success) {
             let data = cartdetails.filter((data) => data.productdetails._id !== id)
-            setCartdetails(data)
+            setCartdetails(data)    
             successToast(response.data.msg)
         } else {
             errorToast(response.data.msg)
@@ -38,7 +38,7 @@ const Products = ({ cartdetails, setCartdetails }) => {
                             return (
                                 <div className=' bg-gray-100 px-4 my-4 py-4'>
                                     <div className=' flex justify-between'>
-                                        <img className=' w-24 h-24' src={data.productdetails.image} alt="" />
+                                        <img className=' w-24 h-24 object-cover' src={data.productdetails.image} alt="" />
                                         <div className=''>
                                             <div className=' font-semibold text-lg'>
                                                 {data.productdetails.name}
@@ -57,7 +57,7 @@ const Products = ({ cartdetails, setCartdetails }) => {
                                             <div className='text-gray-400 text-sm'>In Stock</div>
 
                                         </div>
-                                        <button onClick={() => deleteCartitems(data.productdetails._id)} className=' h-fit text-gray-400'>
+                                        <button onClick={() => deleteCartitems(data.productdetails._id)} className='  text-gray-400 w-8 h-8 rounded-full hover:bg-red-600 duration-300 hover:bg-opacity-40 flex justify-center items-center hover:text-black'>
                                             <RiDeleteBin6Line />
                                         </button>
                                     </div>
@@ -66,7 +66,7 @@ const Products = ({ cartdetails, setCartdetails }) => {
                                 </div>
                             )
                         })
-                    }
+                    }   
                 </div>
             }
             {cartdetails.length > 0 &&

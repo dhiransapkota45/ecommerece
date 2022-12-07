@@ -5,15 +5,19 @@ import Counter from '../../Components/Counter/Counter'
 import instance from "../../api/api_instance"
 import { successToast } from '../../utils/toastify';
 import { errorToast } from '../../utils/errorToast';
+import { deleteOneCartItem } from "../../redux/cart/getCartActionCreator"
+import { useDispatch, useSelector } from 'react-redux';
 
-const Products = ({ cartdetails, setCartdetails }) => {
+const Products = () => {
+    const dispatch = useDispatch()
+    const cartdetails = useSelector((store) => store.getcart.cartdetails)
+
     const [total, setTotal] = useState(0)
 
     const deleteCartitems = async (id) => {
         const response = await instance.put(`/deletecart/${id}`)
         if (response.data.success) {
-            let data = cartdetails.filter((data) => data.productdetails._id !== id)
-            setCartdetails(data)    
+            dispatch(deleteOneCartItem(id))
             successToast(response.data.msg)
         } else {
             errorToast(response.data.msg)
@@ -22,7 +26,6 @@ const Products = ({ cartdetails, setCartdetails }) => {
 
     useEffect(() => {
         setTotal(cartdetails.reduce((accumulator, currentValue) => {
-            // console.log(currentValue);
             return accumulator + currentValue.cartItems.quantity * currentValue.productdetails.price
         }, 0))
     }, [cartdetails])
@@ -43,7 +46,7 @@ const Products = ({ cartdetails, setCartdetails }) => {
                                             <div className=' font-semibold text-lg'>
                                                 {data.productdetails.name}
                                             </div>
-                                            <div className=' text-gray-400 text-sm'>
+                                            <div className=' text-gray-400 text-sm capitalize'>
                                                 Color : {data.cartItems.color}
                                             </div>
                                         </div>
@@ -57,7 +60,7 @@ const Products = ({ cartdetails, setCartdetails }) => {
                                             <div className='text-gray-400 text-sm'>In Stock</div>
 
                                         </div>
-                                        <button onClick={() => deleteCartitems(data.productdetails._id)} className='  text-gray-400 w-8 h-8 rounded-full hover:bg-red-600 duration-300 hover:bg-opacity-40 flex justify-center items-center hover:text-black'>
+                                        <button onClick={() => deleteCartitems(data.productdetails._id)} className='  text-gray-400 w-8 h-8 rounded-full hover:bg-red-100 duration-300  flex justify-center items-center hover:text-red-600'>
                                             <RiDeleteBin6Line />
                                         </button>
                                     </div>
@@ -66,7 +69,7 @@ const Products = ({ cartdetails, setCartdetails }) => {
                                 </div>
                             )
                         })
-                    }   
+                    }
                 </div>
             }
             {cartdetails.length > 0 &&
@@ -87,5 +90,3 @@ const Products = ({ cartdetails, setCartdetails }) => {
 }
 
 export default Products
-
-// id={data.productdetails._id} stock={data.productdetails.stock}

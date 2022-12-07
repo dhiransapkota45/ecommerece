@@ -15,35 +15,17 @@ import Cart from "./pages/Cart/Cart";
 import PageNotFound from "./pages/Error/PageNotFound";
 import Wishlist from "./pages/Wishlist/Wishlist";
 
-// const Pages = () => {
-//   return (
-//     <>
-//       <Navbar />
-//       <Toastify />
-//       <Routes>
-//         <Route path="/">
-//           <Route path="" element={<Home />} />
-//           <Route path="login" element={<Login />} />
-//           <Route path="signup" element={<Signup />} />
-//           <Route path="account" element={<Account />} />
-//           <Route path="about" element={<About />} />
-//           <Route path="contact" element={<Contact />} />
-//           <Route path="shop" element={<Shop />} />
-//           <Route path="item/:id" element={<Item />} />
-//           <Route path="cart" element={<Cart />} />
-//           <Route path="*" element={<PageNotFound />} />
-//         </Route>
-//       </Routes>
-//       <Footer />
-//     </>
-//   );
-// };
-
-const Error = () => {
-  return <div>Error</div>;
-};
+import { useDispatch, useSelector } from "react-redux";
+import { getCart } from "./redux/cart/getCartActionCreator";
+import { useEffect } from "react";
 
 function App() {
+  const cartcount = useSelector((store) => store.getcart.cartcount);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log("it has run");
+    dispatch(getCart());
+  }, [cartcount]);
   return (
     <div>
       <Navbar />
@@ -61,17 +43,9 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="wishlist" element={<Wishlist />} />
           <Route path="*" element={<PageNotFound />} />
-
         </Route>
       </Routes>
       <Footer />
-
-      {/* <Routes>
-        <Route path="/">
-          <Route path="/" element={<Pages />} />
-          <Route path="*" element={<Error />} />
-        </Route>
-      </Routes> */}
     </div>
   );
 }

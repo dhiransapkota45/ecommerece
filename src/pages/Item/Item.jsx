@@ -1,5 +1,5 @@
 import React, { cloneElement, useEffect, useState } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa"
 import { AiOutlineShoppingCart } from "react-icons/ai"
@@ -7,8 +7,10 @@ import { HiOutlineMinus } from "react-icons/hi"
 import { GoPlus } from "react-icons/go"
 import { useDispatch, useSelector } from 'react-redux';
 import { addtoCart } from "../../redux/cart/cartActionCreator"
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import instance from '../../api/api_instance';
+
+import { addToCartIcon } from "../../redux/cart/getCartActionCreator"
 
 const baseUrl = "http://localhost:8000"
 
@@ -28,7 +30,8 @@ const Item = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-        dispatch(addtoCart(activebuttons, item._id))
+        dispatch(addtoCart(activebuttons, item._id, addToCartIcon))
+
     }
 
     useEffect(() => {
@@ -48,20 +51,6 @@ const Item = () => {
             navigate("/login")
         }
     }, [])
-
-    // useEffect(() => {
-    //     const fetchItem = async () => {
-
-    //         const item = await axios.get(`${baseUrl}/item/${id}`)
-
-    //         setItem(item.data.item)
-    //         console.log(item);
-    //         setFeatureImage(item.data.item.image)
-    //     }
-    //     fetchItem()
-    // }, [])
-
-    console.log(item.color);
 
     const domyimage = [item.image, "https://images.unsplash.com/photo-1669046635809-b682a850ea5b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
         "https://images.unsplash.com/photo-1669007841111-d36d3d72c52e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=710&q=80"

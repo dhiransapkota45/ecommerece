@@ -5,10 +5,6 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Account = () => {
-    // const dispatch = useDispatch()
-    // const { authToken } = useSelector((store) => store.signup)
-    // const { authTokenLogin } = useSelector((store) => store.login)
-
     const { name, street, email, address, phone, gender, image } = profiledata
     const navigate = useNavigate()
 
@@ -16,7 +12,8 @@ const Account = () => {
     const logoutHandler = () => {
         localStorage.clear()
         sessionStorage.clear()
-        navigate("/login")
+        window.location.reload()
+        // navigate("/login")
     }
 
     useEffect(() => {

@@ -23,6 +23,16 @@ const getCartReducer = (state = initialState, action) => {
         error: action.payload,
         cartdetails: [],
       };
+
+    case "getcart/deleteonecartitem":
+      let data = state.cartdetails.filter(
+        (data) => data.productdetails._id !== action.payload
+      );
+      return { ...state, cartdetails: data, cartcount: state.cartcount - 1 };
+
+    case "getcart/addtocarticon":
+      console.log("log4");
+      return { ...state, cartcount: state.cartcount + 1 };
     default:
       return { ...state };
   }

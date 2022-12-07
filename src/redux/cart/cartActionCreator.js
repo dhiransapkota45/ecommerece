@@ -19,7 +19,7 @@ const addtoCartFailure = (error) => {
   };
 };
 
-export const addtoCart = (data, id, deleteHandler = null) => {
+export const addtoCart = (data, id, addToCartIcon, deleteHandler = null) => {
   return async (dispatch) => {
     dispatch(addtoCartPending());
     try {
@@ -27,6 +27,9 @@ export const addtoCart = (data, id, deleteHandler = null) => {
       if (deleteHandler) {
         deleteHandler(id);
       }
+      // dispatch(addtoCart());
+      console.log("log1");
+      dispatch(addToCartIcon())
       dispatch(addtoCartSuccess());
     } catch (error) {
       console.log(error);

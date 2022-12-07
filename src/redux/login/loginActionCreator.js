@@ -41,6 +41,7 @@ export const loginUser = (data, checkbox, navigate) => {
           sessionStorage.setItem("authToken", response.data.authToken);
           navigate("/account");
         }
+        window.location.reload();
         dispatch(loginSuccess());
       })
       .catch((error) => {

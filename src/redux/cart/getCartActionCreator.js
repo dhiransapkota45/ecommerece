@@ -20,6 +20,19 @@ const getCartFailure = (error) => {
   };
 };
 
+export const deleteOneCartItem = (id) => {
+  return {
+    type: "getcart/deleteonecartitem",
+    payload: id,
+  };
+};
+
+export const addToCartIcon = () => {
+  return {
+    type: "getcart/addtocarticon",
+  };
+};
+
 export const getCart = () => {
   return async (dispatch) => {
     dispatch(getCartPending());

@@ -1,9 +1,9 @@
 import React from 'react'
 import { GrClose } from "react-icons/gr"
 import { NavLink } from 'react-router-dom'
-import { FiShoppingCart } from "react-icons/fi"
 import { AiOutlineHeart } from "react-icons/ai"
 import { CgProfile } from "react-icons/cg"
+import CartIcon from '../Buttons/CartIcon/CartIcon'
 
 const Sidenav = ({hamburger, setHamburger}) => {
     return (
@@ -23,7 +23,7 @@ const Sidenav = ({hamburger, setHamburger}) => {
                         <NavLink onClick={()=>setHamburger(false)} className=" p-4 w-full text-center" to="/about"> About Us</NavLink>
                         <NavLink onClick={()=>setHamburger(false)} className=" p-4 w-full text-center" to="/contact"> Contact</NavLink>
                         <NavLink onClick={()=>setHamburger(false)} className=" p-4 w-full flex justify-center" to="/cart"  >
-                            <FiShoppingCart className=' text-xl ' />
+                            <CartIcon />
                         </NavLink>
                         <NavLink onClick={()=>setHamburger(false)} className=" p-4 w-full flex justify-center" to="/wishlist"  >
                             <AiOutlineHeart className=' text-xl' />

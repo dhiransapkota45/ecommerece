@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import title from './assets/title'
 import { IoOptionsSharp } from "react-icons/io5"
 import { FaAngleDown } from "react-icons/fa"
 import { getProduct } from "../../redux/product/productActionCreators"
 import Products from './Products'
+import Loader from '../../Components/Common/Loader'
 
 const Shop = () => {
     const dispatch = useDispatch()
@@ -24,20 +25,30 @@ const Shop = () => {
         category: "Jacket"
     })
 
-    const submitHandler = (e) => {
-        console.log(filterValue);
-        e.preventDefault()
-        dispatch(getProduct(filterValue))
-    }
-    useEffect(() => {
-        dispatch(getProduct(filterValue))
-    }, [])
-
     const colors = ["blue", "red", "green", "yellow", "all"]
 
     const sizes = ["s", "m", "l", "xl", "xxl", "all"]
 
     const agegroup = ["men", "women", "other", "all"]
+
+    const categoryhandler = (category) => {
+        setFilterValue((prev) => {
+            return {
+                ...prev,
+                agegroup: category
+            }
+        })
+        console.log(filterValue.agegroup, category);
+
+    }
+
+    const func = () => { dispatch(getProduct(filterValue)) }
+    useEffect(() => {
+        func()
+        // eslint-disable-next-line
+    }, [filterValue])
+
+
     return (
         <div>
             {/* banner */}
@@ -58,18 +69,17 @@ const Shop = () => {
             </div>
 
             {/* main part */}
-            <div className=' w-full my-12 flex justify-center'>
-                <div className=' w-11/12  grid grid-cols-12 '>
-                    <form onSubmit={submitHandler} className=' col-span-12 md:col-span-3 sticky top-[66px] h-fit border-b z-20 p-4 bg-white'>
+            <div className=' w-full my-12 p-8'>
+                <div className='  md:grid gap-6 grid-cols-12 '>
+                    <form className='col-span-3 sticky top-[66px] h-fit border-b z-20 p-4 bg-white'>
                         <div className=' font-bold text-3xl mb-4'>T-Shirt </div>
                         <div className='mb-7 flex justify-between'>
 
                             <div className='flex gap-4 items-center  '>Filter <IoOptionsSharp className=' text-xl' /></div>
-                            <button className={`${dropdown.filter ? " rotate-0" : " -rotate-90"} duration-300`} onClick={() => setDropdown({ ...dropdown, filter: !dropdown.filter })}><FaAngleDown /></button>
+                            <button type='button' className={`${dropdown.filter ? " rotate-0" : " -rotate-90"} duration-300`} onClick={() => setDropdown({ ...dropdown, filter: !dropdown.filter })}><FaAngleDown /></button>
                         </div>
 
                         {dropdown.filter &&
-
                             <div className=''>
                                 {/* category filter */}
                                 <div className=''>
@@ -78,10 +88,10 @@ const Shop = () => {
                                         <div onClick={() => setDropdown({ ...dropdown, category: !dropdown.category })} className=' cursor-pointer'><FaAngleDown className={`  ${dropdown.category ? "rotate-0" : "-rotate-90"} duration-300`} /></div>
                                     </div>
 
-                                    <div className={` h-0 overflow-hidden ${dropdown.category && " h-8"} duration-300 mt-1 md:mt-3 flex gap-4 mx-2`}>
+                                    <div className={` h-0 overflow-hidden duration-300 mt-1 md:mt-3 flex gap-4 mx-2 ${dropdown.category && "h-10"}`}>
                                         {agegroup.map((category, index) => {
                                             return (
-                                                <button type='button' onClick={() => setFilterValue({ ...filterValue, agegroup: category })} key={index} className={`border rounded px-2 ${category === filterValue.agegroup ? " bg-blue-400 text-white font-semibold" : " text-black "}`}>{category}</button>
+                                                <button type='button' onClick={() => categoryhandler(category)} key={index} className={`border rounded px-2 ${category === filterValue.agegroup ? " bg-blue-400 text-white font-semibold" : " text-black "}`}>{category}</button>
                                             )
                                         })}
                                     </div>
@@ -149,13 +159,14 @@ const Shop = () => {
                                     <div className=' w-full h-[1px] bg-gray-300 mt-2'></div>
 
                                 </div>
-                                <button type=' submit' className=' p-2 w-32 font-bold bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] text-white my-4 rounded-md'>Apply Filter</button>
+                                {/* <button type=' submit' className=' p-2 w-32 font-bold bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] text-white my-4 rounded-md'>Apply Filter</button> */}
                             </div>
                         }
 
 
                     </form>
                     <div className=' col-span-9'>
+                        <Loader />
                         <Products />
                     </div>
                 </div>

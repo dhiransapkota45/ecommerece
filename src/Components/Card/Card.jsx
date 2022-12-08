@@ -20,9 +20,9 @@ const Card = ({ _id, image, name, price, star = 5 }) => {
         addtowishlist(_id)
     }
     return (
-        <div className=' rounded-md shadow-xl w-60 ' onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+        <div className=' rounded-md shadow-xl w-full ' onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
             <div className=' relative overflow-hidden' >
-                <img className=' w-full h-48 object-cover' src={image} alt="" />
+                <img className=' w-full h-72 object-cover' src={image} alt="" />
 
                 <div className={`${hover ? "bottom-0" : "-bottom-14"} duration-300 absolute   w-full bg-black bg-opacity-80 h-14`}>
                     <button className='text-white absolute right-3 top-2 border p-2'><FiBookmark className=' text-xl ' /></button>
@@ -31,12 +31,12 @@ const Card = ({ _id, image, name, price, star = 5 }) => {
                 </div>
             </div>
             <NavLink to={`/item/${_id}`}>
-                <div className='flex justify-between p-4 font-bold'>
+                <div className='flex justify-between px-4 py-2 font-bold'>
                     <div>{name}</div>
                     <div>${price}</div>
                 </div>
                 <div className='px-4 text-gray-600'>Best quality</div>
-                <div className='flex p-4'>{stars}</div>
+                <div className='flex px-4 py-2'>{stars}</div>
             </NavLink>
         </div>
     )

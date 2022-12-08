@@ -21,16 +21,17 @@ const productFailure = () => {
 const baseUrl = `http://localhost:8000`;
 
 export const getProduct = (filterValue) => {
-  Object.keys(filterValue).forEach((key) => {
-    if (filterValue[key] === "all") {
-      delete filterValue[key];
+  let dataforbackend = filterValue
+  Object.keys(dataforbackend).forEach((key) => {
+    if (dataforbackend[key] === "all") {
+      delete dataforbackend[key];
     }
   });
 
   return function (dispatch) {
     dispatch(productPending());
     axios
-      .post(`${baseUrl}/allproduct`, filterValue)
+      .post(`${baseUrl}/allproduct`, dataforbackend)
       .then((response) => {
         console.log(response);
         dispatch(productSuccess(response.data.product));

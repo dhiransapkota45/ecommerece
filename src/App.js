@@ -15,6 +15,8 @@ import Cart from "./pages/Cart/Cart";
 import PageNotFound from "./pages/Error/PageNotFound";
 import Wishlist from "./pages/Wishlist/Wishlist";
 
+import "./assets/css/loader.css"
+
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "./redux/cart/getCartActionCreator";
 import { useEffect } from "react";

@@ -59,7 +59,7 @@ const Shop = () => {
 
             {/* main part */}
             <div className=' w-full my-12 flex justify-center'>
-                <div className=' w-4/5  grid grid-cols-12 '>
+                <div className=' w-11/12  grid grid-cols-12 '>
                     <form onSubmit={submitHandler} className=' col-span-12 md:col-span-3 sticky top-[66px] h-fit border-b z-20 p-4 bg-white'>
                         <div className=' font-bold text-3xl mb-4'>T-Shirt </div>
                         <div className='mb-7 flex justify-between'>

@@ -4,7 +4,6 @@ import { AiOutlineHeart } from "react-icons/ai"
 import { FiBookmark } from "react-icons/fi"
 import { NavLink } from 'react-router-dom'
 import { addtowishlist } from '../../utils/addtowishlist'
-import { useEffect } from 'react'
 
 const Card = ({ _id, image, name, price, star = 5 }) => {
     const [hover, setHover] = useState(false)
@@ -21,9 +20,9 @@ const Card = ({ _id, image, name, price, star = 5 }) => {
         addtowishlist(_id)
     }
     return (
-        <div className=' rounded-md shadow-xl w-80 ' onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+        <div className=' rounded-md shadow-xl w-60 ' onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
             <div className=' relative overflow-hidden' >
-                <img className=' w-full h-60 object-cover' src={image} alt="" />
+                <img className=' w-full h-48 object-cover' src={image} alt="" />
 
                 <div className={`${hover ? "bottom-0" : "-bottom-14"} duration-300 absolute   w-full bg-black bg-opacity-80 h-14`}>
                     <button className='text-white absolute right-3 top-2 border p-2'><FiBookmark className=' text-xl ' /></button>

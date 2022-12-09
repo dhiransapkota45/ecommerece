@@ -27,3 +27,7 @@
 .btn{
   @apply bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] text-white p-2
 }
+
+/* input[type="radio"]:checked {
+  background-color: "red";
+} */

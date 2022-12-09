@@ -12,7 +12,7 @@ import instance from '../../api/api_instance';
 
 import { addToCartIcon } from "../../redux/cart/getCartActionCreator"
 
-const baseUrl = "http://localhost:8000"
+// const baseUrl = "http://localhost:8000"
 
 const Item = () => {
     const navigate = useNavigate()
@@ -47,7 +47,6 @@ const Item = () => {
             fetchItem()
         } else {
             console.log("reached here");
-            // return redirect("/login")
             navigate("/login")
         }
     }, [])
@@ -78,13 +77,23 @@ const Item = () => {
                     <div className=' my-4 flex justify-between'>
                         <div>
                             <div className=' font-bold'>Available Colors</div>
-                            <div className=' flex gap-4'>
+                            {/* <div className=' flex gap-4'>
                                 {item.color && item.color.map((color) => {
                                     return (
                                         <button type='button' onClick={() => setActivebuttons({ ...activebuttons, color: color })} className={`${color === activebuttons.color ? "bg-green-400" : "bg-gray-400"}  font-semibold text-white p-2 rounded-full mt-3 h-9 flex justify-center items-center`}>{color}</button>
                                     )
                                 })}
+                            </div> */}
+                            <div className=' flex gap-4  my-2'>
+                                {item.color && item.color.map((color) => {
+                                    return (
+                                        <>
+                                            <input type='radio' style={{ backgroundColor: `${color}` }} name='color' onClick={() => setActivebuttons({ ...activebuttons, color: color })} className={`w-5 h-5 form-radio rounded-full`}></input>
+                                        </>
+                                    )
+                                })}
                             </div>
+
                         </div>
                         <div className=' flex flex-col items-center'>
                             <div className='  font-bold'>Stock</div>
@@ -97,7 +106,7 @@ const Item = () => {
                             {
                                 item.size && item.size.map((size) => {
                                     return (
-                                        <button type='button' onClick={() => setActivebuttons({ ...activebuttons, size })} className={`${size === activebuttons.size ? "bg-green-400" : "bg-gray-400"} font-semibold text-white p-2 rounded-full w-9 h-9 flex justify-center items-center`}>{size}</button>
+                                        <button type='button' onClick={() => setActivebuttons({ ...activebuttons, size })} className={`${size === activebuttons.size ? "bg-gray-600" : "bg-gray-400"} font-semibold text-white p-2 rounded-full w-9 h-9 flex justify-center items-center capitalize duration-300`}>{size}</button>
                                     )
                                 })}
 

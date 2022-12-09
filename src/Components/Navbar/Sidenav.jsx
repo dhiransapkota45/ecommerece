@@ -10,7 +10,7 @@ const Sidenav = ({ hamburger, setHamburger }) => {
         <>
             {hamburger && <div onClick={() => setHamburger(false)} className=' fixed overflow-hidden z-40 top-0 w-full h-screen bg-black bg-opacity-60'></div>}
             {
-                <div style={{color:"red"}} id='offcanvas' className={` fixed top-0 w-full sm:w-96 z-50 h-full  bg-gradient-to-t bg-[white] ${hamburger ? "left-0" : " -left-full sm:-left-96 "} duration-500`}>
+                <div id='offcanvas' className={` fixed top-0 w-full sm:w-96 z-50 h-full  bg-gradient-to-t bg-[white] ${hamburger ? "left-0" : " -left-full sm:-left-96 "} duration-500`}>
                     <div className=' h-16 px-2 flex justify-end'>
                         <button onClick={() => setHamburger(!hamburger)}>
                             <GrClose />

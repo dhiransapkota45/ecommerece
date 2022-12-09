@@ -1,11 +1,11 @@
-import React, { cloneElement, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 // import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa"
 import { AiOutlineShoppingCart } from "react-icons/ai"
 import { HiOutlineMinus } from "react-icons/hi"
 import { GoPlus } from "react-icons/go"
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addtoCart } from "../../redux/cart/cartActionCreator"
 import { useNavigate } from 'react-router-dom';
 import instance from '../../api/api_instance';

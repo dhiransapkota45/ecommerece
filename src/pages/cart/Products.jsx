@@ -31,7 +31,7 @@ const Products = () => {
     }, [cartdetails])
 
     return (
-        <div className=' grid grid-cols-12 gap-4'>
+        <div className=' lg:grid grid-cols-12 gap-4'>
             {cartdetails.length === 0 ?
                 <div className=' col-span-8 mb-16'>No items in cart</div>
                 :
@@ -39,8 +39,8 @@ const Products = () => {
                     {
                         cartdetails.map((data, index) => {
                             return (
-                                <div className=' bg-gray-100 px-4 my-4 py-4'>
-                                    <div className=' flex justify-between'>
+                                <div key={index} className=' bg-gray-100 px-4 my-4 py-4'>
+                                    <div className=' flex justify-between flex-wrap'>
                                         <img className=' w-24 h-24 object-cover' src={data.productdetails.image} alt="" />
                                         <div className=''>
                                             <div className=' font-semibold text-lg'>
@@ -64,7 +64,6 @@ const Products = () => {
                                             <RiDeleteBin6Line />
                                         </button>
                                     </div>
-
                                     <Counter setTotal={setTotal} count={data.cartItems.quantity} {...data.productdetails} />
                                 </div>
                             )
@@ -73,8 +72,8 @@ const Products = () => {
                 </div>
             }
             {cartdetails.length > 0 &&
-                < div className=' col-span-4  my-4  '>
-                    <div className=' px-4 py-8 flex flex-col gap-8 bg-gray-100'>
+                < div className=' col-span-4  my-4 flex lg:block justify-end '>
+                    <div className=' px-8 py-8 flex flex-col gap-8 bg-gray-100'>
                         <div className=' flex  justify-between'>
                             <div className=' font-bold'>Total</div>
                             <div className=' font-semibold'>${total}USD</div>

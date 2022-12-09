@@ -12,7 +12,7 @@ const Card = ({ _id, image, name, price, star = 5 }) => {
 
     let stars = []
     for (let i = 0; i < star; i++) {
-        stars.push(<img src={star1} />)
+        stars.push(<img src={star1} alt="" />)
     }
 
     const wishlistHandler = () => {
@@ -23,7 +23,6 @@ const Card = ({ _id, image, name, price, star = 5 }) => {
         <div className=' rounded-md shadow-xl w-full ' onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
             <div className=' relative overflow-hidden' >
                 <img className=' w-full h-72 object-cover' src={image} alt="" />
-
                 <div className={`${hover ? "bottom-0" : "-bottom-14"} duration-300 absolute   w-full bg-black bg-opacity-80 h-14`}>
                     <button className='text-white absolute right-3 top-2 border p-2'><FiBookmark className=' text-xl ' /></button>
                     <button onClick={wishlistHandler} className={`duration-500 ${colorchange ? " text-red-500   border-red-500" : "text-white"} ${wishstate && wishstate.includes(_id) && "text-red-500   border-red-500"}  absolute right-16 top-2 border p-2`}><AiOutlineHeart className={` text-xl  `} /></button>

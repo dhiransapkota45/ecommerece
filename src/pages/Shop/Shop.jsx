@@ -5,7 +5,6 @@ import { IoOptionsSharp } from "react-icons/io5"
 import { FaAngleDown } from "react-icons/fa"
 import { getProduct } from "../../redux/product/productActionCreators"
 import Products from './Products'
-// import Loader from '../../Components/Common/Loader'
 import useWindowWidth from '../../hooks/useWindowWidth'
 
 const Shop = () => {
@@ -41,8 +40,6 @@ const Shop = () => {
                 agegroup: category
             }
         })
-        // console.log(filterValue.agegroup, category);
-
     }
 
     const func = () => { dispatch(getProduct(filterValue)) }
@@ -176,7 +173,6 @@ const Shop = () => {
 
                     </form>
                     <div className=' col-span-9'>
-                        {/* <Loader /> */}
                         <Products />
                     </div>
                 </div>

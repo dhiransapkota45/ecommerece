@@ -21,7 +21,7 @@ const Cart = () => {
   return (
     <div>
       <Banner title="Cart" />
-      <div className='  max-w-[900px] mx-auto '>
+      <div className='  max-w-[900px] my-16 mx-auto px-4 lg:px-0 '>
         <div className=' font-semibold text-3xl my-8'>
           Cart Product
         </div>

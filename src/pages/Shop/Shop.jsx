@@ -6,32 +6,36 @@ import { FaAngleDown } from "react-icons/fa"
 import { getProduct } from "../../redux/product/productActionCreators"
 import Products from './Products'
 import useWindowWidth from '../../hooks/useWindowWidth'
+import { useLocation } from 'react-router-dom'
 
 const Shop = () => {
+    const { state } = useLocation()
     const windowWidth = useWindowWidth()
     const agegroupref = useRef()
     const dispatch = useDispatch()
+    // const { age, price, color, size, category } = state
+
     const [dropdown, setDropdown] = useState({
         filter: true,
         category: false,
-        price: false,
-        color: false,
-        size: false
+        price: true,
+        color: true,
+        size: true
     })
 
     const [filterValue, setFilterValue] = useState({
-        agegroup: "all",
-        price: "200",
-        color: "all",
-        size: "all",
-        category: "Jacket"
+        agegroup: state?.age || "all",
+        price: state?.price || "200",
+        color: state?.color || "all",
+        size: state?.size || "all",
+        category: state?.category || "Jacket"
     })
 
     const colors = ["blue", "red", "green", "yellow", "all"]
 
     const sizes = ["s", "m", "l", "xl", "xxl", "all"]
 
-    const agegroup = ["men", "women", "other", "all"]
+    const agegroup = ["men", "women", "children", "all"]
 
     const categoryhandler = (category) => {
         setFilterValue((prev) => {
@@ -78,7 +82,7 @@ const Shop = () => {
             {/* main part */}
             <div className=' w-full my-12 p-8'>
                 <div className='  md:grid gap-6 grid-cols-12 '>
-                    <form className='col-span-3 sticky top-[90px] h-fit border-b z-20 p-4 bg-white py-5'>
+                    <form className='col-span-3 sticky top-[66px] md:top-[80px] h-fit border-b z-20 px-4 bg-white py-5'>
                         <div className=' font-bold text-3xl mb-4'>{filterValue.category} </div>
                         <div onClick={() => setDropdown({ ...dropdown, filter: !dropdown.filter })} className='pb-4 mb-3 cursor-pointer flex justify-between '>
 

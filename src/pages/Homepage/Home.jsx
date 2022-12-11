@@ -16,18 +16,6 @@ const Home = () => {
       <Oblongers />
       <Testimonials />
       <Models />
-
-     {/* <div className='bg-red-100 mx-auto w-4/12' >
-     <Carousel verticalMode itemsToShow={3}>
-       <div>1</div>
-       <div>2</div>
-       <div>3</div>
-
-       <div>1</div>
-       <div>2</div>
-       <div>3</div>
-      </Carousel>
-     </div> */}
     </>
   )
 }

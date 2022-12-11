@@ -8,26 +8,28 @@
   }
 }
 
-.sc-jSUZER .dQEjUh .rec .rec-carousel-wrapper{
-  @apply bg-red-700 flex flex-row
+.sc-jSUZER .dQEjUh .rec .rec-carousel-wrapper {
+  @apply bg-red-700 flex flex-row;
 }
 
-.rec .rec-arrow:hover{
+.rec .rec-arrow:hover {
   background-color: green;
 }
 
-#mainnav .active{
-  @apply text-blue-600 font-bold border-opacity-100 border-b-2  border-blue-600
+#mainnav .active {
+  @apply text-blue-600 font-bold border-opacity-100 border-b-2  border-blue-600;
 }
 
-#offcanvas .active{
-  @apply bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] rounded-md text-white duration-300
+#offcanvas .active {
+  @apply bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] rounded-md text-white duration-300;
 }
 
-.btn{
-  @apply bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] text-white p-2
+.btn {
+  @apply bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] text-white p-2;
 }
 
-/* input[type="radio"]:checked {
-  background-color: "red";
-} */
+.gradient:hover {
+  background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), black);
+  transition-property: all;
+  transition-duration: 3s;
+}

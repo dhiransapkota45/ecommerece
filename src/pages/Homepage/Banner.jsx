@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import image1 from "./assets/image1.png"
 import VerticalCarousel from './VerticalCarousel'

@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom'
 import icons from './data/icons'
 
 const Footer = () => {
+    const category = ["T-Shirt", "Jacket", "Shirt", "Jeans"]
+    const age = ["men", "women", "children"]
     return (
         <div className=' w-full bg-[#393E46]'>
             <div className=' max-w-6xl mx-auto  flex justify-between px-6 flex-wrap gap-6  py-10'>

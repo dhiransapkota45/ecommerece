@@ -36,8 +36,10 @@ export const loginUser = (data, checkbox, navigate) => {
         console.log(response);
         if (checkbox) {
           localStorage.setItem("authToken", response.data.authToken);
+          localStorage.setItem("refreshToken", response.data.refreshToken);
           navigate("/account");
         } else {
+          sessionStorage.setItem("refreshToken", response.data.refreshToken);
           sessionStorage.setItem("authToken", response.data.authToken);
           navigate("/account");
         }

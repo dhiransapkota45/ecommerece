@@ -21,7 +21,8 @@ const productFailure = () => {
 const baseUrl = `http://localhost:8000`;
 
 export const getProduct = (filterValue) => {
-  let dataforbackend = filterValue
+  console.log(filterValue);
+  let dataforbackend = filterValue;
   Object.keys(dataforbackend).forEach((key) => {
     if (dataforbackend[key] === "all") {
       delete dataforbackend[key];

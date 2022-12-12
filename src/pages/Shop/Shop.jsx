@@ -17,7 +17,7 @@ const Shop = () => {
 
     const [dropdown, setDropdown] = useState({
         filter: true,
-        category: false,
+        category: true,
         price: true,
         color: true,
         size: true
@@ -100,8 +100,8 @@ const Shop = () => {
                                     </div>
 
                                     {/* ${dropdown.category ? `h-[${agegroupref.current.clientHeight}px] duration-300` : "h-0"} */}
-                                    {/* style={{ height: dropdown.category ? agegroupref?.current?.clientHeight + "px" : "0px" }} */}
-                                    <div ref={agegroupref} className={`${dropdown.category ? `h-[${agegroupref.current.clientHeight}px] duration-300` : "h-0"} duration-300 overflow-hidden  mt-1 md:mt-3 flex flex-wrap gap-4 mx-2`}>
+
+                                    <div style={{ height: dropdown.category ? agegroupref?.current?.scrollHeight + "px" : "0px" }} ref={agegroupref} className={` duration-300 overflow-hidden  mt-1 md:mt-3 flex flex-wrap gap-4 mx-2`}>
                                         {agegroup.map((category, index) => {
                                             return (
                                                 <button type='button' onClick={() => categoryhandler(category)} key={index} className={` border rounded px-2 ${category === filterValue.agegroup ? " bg-blue-400 text-white font-semibold" : " text-black  "}`}>{category}</button>

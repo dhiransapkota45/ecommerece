@@ -18,16 +18,11 @@ const ImageSlider = () => {
   })
   return (
     <div className=' flex justify-end'>
-      <div className='rounded-t-[60px] rounded-r-[60px] bg-white border-white border-4 max-w-96 h-[500px] overflow-hidden relative'>
+      <div className='rounded-t-[60px] rounded-r-[60px] bg-white border-white border-4 max-w-96 h-[500px] overflow-hidden relative flex justify-center  '>
         <NavLink to={`/item/${imageDatas[activeImage]?._id}`}>
           <img className=' h-full w-full object-contain' src={imageDatas[activeImage]?.image || image1} alt="" />
         </NavLink>
-        {/* <img src={image1} alt="" srcset="" /> */}
-
-        <div>
-          <div className=' absolute w-80 overflow-hidden bg-black bg-opacity-50 h-16 bottom-4 left-5'>
-            {/* <div className=' w-full border'>hello</div> */}
-            {/* <div className=' border-2 border-cyan-600 h-full relative'> */}
+          <div className=' absolute w-80 overflow-hidden bg-black bg-opacity-50 h-16 bottom-4'>
             <div style={{ width: 80 * imageDatas.length, left: -activeImage * 81 }} className=' duration-300 relative h-full overflow-hidden flex gap-2'>
               {
                 imageDatas.map((imagedata, index) => {
@@ -38,10 +33,9 @@ const ImageSlider = () => {
                   )
                 })
               }
-              {/* </div> */}
             </div>
           </div>
-        </div>
+        {/* </div> */}
         {/* <div className=' absolute bottom-8 left-2 text-white bg-blue-700 p-1 text-xl'>
           <GoChevronLeft />
         </div>

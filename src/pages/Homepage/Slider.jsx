@@ -17,7 +17,7 @@ const Slider = () => {
     return (
         <div className='overflow-hidden h-80 w-96 md:w-full'>
             {/* <img src="" alt="" /> */}
-            <div style={{ width: sliderdata.length * 384, left: -activeElement * 384 }} className=" duration-300 flex gap-7 relative items-center  h-full">
+            <div style={{ width: sliderdata.length * 384, left: -activeElement * 384 }} className=" duration-300 flex relative  items-center  h-full">
                 {
                     sliderdata?.map((detail, index) => {
                         return (

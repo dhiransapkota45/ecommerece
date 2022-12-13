@@ -5,8 +5,8 @@ import { NavLink } from 'react-router-dom'
 
 const Slider2 = ({ detail, index, activeElement, setActiveElement, length }) => {
     return (
-        <div className={`w-96 duration-300 ${activeElement === index ? "h-full" : "h-1/2"} relative`}>
-            <NavLink to="shop" state={{ category: detail.title }}>
+        <div className={`w-full mr-2 duration-300 ${activeElement === index ? "h-full" : "h-1/2"} relative`}>
+            <NavLink className="" to="shop" state={{ category: detail.title }}>
                 <img className={`w-full h-full  object-cover`} src={detail.image} alt="" srcset="" />
             </NavLink>
             <button onClick={() => setActiveElement(activeElement - 1)} disabled={index === 0} className={`${activeElement === index ? "absolute" : "hidden"} p-2 text-white ${index === 0 ? "bg-blue-400" : "bg-blue-600"} left-1 top-1/2`}><BsCaretLeftFill className=' text-xl' /></button>

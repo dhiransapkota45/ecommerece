@@ -1,4 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
+import instance from "../../api/api_instance";
 
 const signupPending = () => {
   return {
@@ -19,13 +20,11 @@ const signupFailure = (error) => {
   };
 };
 
-const baseUrl = `http://localhost:8000`;
-
 export const signupUser = (data, checkbox, navigate) => {
   return function (dispatch) {
     dispatch(signupPending());
-    axios
-      .post(`${baseUrl}/signup`, data)
+    instance
+      .post(`/signup`, data)
       .then((response) => {
         if (checkbox) {
           localStorage.setItem("authToken", response.data.authToken);
@@ -34,9 +33,7 @@ export const signupUser = (data, checkbox, navigate) => {
           sessionStorage.setItem("authToken", response.data.authToken);
           navigate("/account");
         }
-        dispatch(
-          signupSuccess()
-        );
+        dispatch(signupSuccess());
       })
       .catch((error) => {
         console.log(error.response.data.msg);

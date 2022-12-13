@@ -1,4 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
+import instance from "../../api/api_instance";
 
 const loginPending = () => {
   return {
@@ -25,13 +26,12 @@ export const emptyerror = () => {
   };
 };
 
-const baseUrl = `http://localhost:8000`;
 
 export const loginUser = (data, checkbox, navigate) => {
   return function (dispatch) {
     dispatch(loginPending());
-    axios
-      .post(`${baseUrl}/login`, data)
+    instance
+      .post(`/login`, data)
       .then((response) => {
         console.log(response);
         if (checkbox) {

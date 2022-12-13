@@ -1,5 +1,4 @@
 import React, {  useEffect, useState } from 'react'
-// import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa"
 import { AiOutlineShoppingCart } from "react-icons/ai"
@@ -12,7 +11,6 @@ import instance from '../../api/api_instance';
 
 import { addToCartIcon } from "../../redux/cart/getCartActionCreator"
 
-// const baseUrl = "http://localhost:8000"
 
 const Item = () => {
     const navigate = useNavigate()
@@ -77,13 +75,6 @@ const Item = () => {
                     <div className=' my-4 flex justify-between'>
                         <div>
                             <div className=' font-bold'>Available Colors</div>
-                            {/* <div className=' flex gap-4'>
-                                {item.color && item.color.map((color) => {
-                                    return (
-                                        <button type='button' onClick={() => setActivebuttons({ ...activebuttons, color: color })} className={`${color === activebuttons.color ? "bg-green-400" : "bg-gray-400"}  font-semibold text-white p-2 rounded-full mt-3 h-9 flex justify-center items-center`}>{color}</button>
-                                    )
-                                })}
-                            </div> */}
                             <div className=' flex gap-4  my-2'>
                                 {item.color && item.color.map((color) => {
                                     return (

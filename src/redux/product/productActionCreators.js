@@ -1,4 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
+import instance from "../../api/api_instance";
 
 const productPending = () => {
   return {
@@ -31,7 +32,7 @@ export const getProduct = (filterValue) => {
 
   return function (dispatch) {
     dispatch(productPending());
-    axios
+    instance
       .post(`${baseUrl}/allproduct`, dataforbackend)
       .then((response) => {
         console.log(response);

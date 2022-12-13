@@ -22,7 +22,7 @@ const Navbar = () => {
         </div>
         <div id='mainnav' className='  hidden xl:flex  gap-6 items-center font-semibold '>
           <NavLink className=" " to="/" > Home</NavLink>
-          <NavLink className=" " activeClassName="activenavlink" to="/shop"> Shop</NavLink>
+          <NavLink className=" " to="/shop"> Shop</NavLink>
           <NavLink className=" " to="/about"> About Us</NavLink>
           <NavLink className=" " to="/contact"> Contact</NavLink>
           <NavLink className=" " to="/cart" >

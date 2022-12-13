@@ -20,9 +20,9 @@ const Products = () => {
             <div className='flex flex-col items-center mb-14'>
                 <div className=' text-center font-bold text-5xl my-6'>Our Best Seller Product</div>
                 <div className='flex gap-4'>
-                    {products.map((product) => {
+                    {products.map((product, index) => {
                         return (
-                            <div className={`${productState.category === product ? " text-blue-500 border-b-2 font-bold border-blue-500" : "bg-white"} text-gray-700 my-6   cursor-pointer`} onClick={() => setProductState({ ...productState, category: product })}>{product}</div>
+                            <div key={index} className={`${productState.category === product ? " text-blue-500 border-b-2 font-bold border-blue-500" : "bg-white"} text-gray-700 my-6   cursor-pointer`} onClick={() => setProductState({ ...productState, category: product })}>{product}</div>
                         )
                     })}
                 </div>

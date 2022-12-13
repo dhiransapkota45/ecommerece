@@ -38,10 +38,10 @@ export const getCart = () => {
     dispatch(getCartPending());
     try {
       const fetchcartdetails = await instance.get("/usercartproduct");
-      console.log(fetchcartdetails.data);
+      // console.log(fetchcartdetails.data);
       dispatch(getCartSuccess(fetchcartdetails.data));
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       dispatch(getCartFailure(error.response.data.msg));
     }
   };

@@ -25,7 +25,6 @@ function App() {
   const cartcount = useSelector((store) => store.getcart.cartcount);
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("it has run");
     dispatch(getCart());
   }, [cartcount]);
   return (

@@ -13,7 +13,6 @@ const Shop = () => {
     const windowWidth = useWindowWidth()
     const agegroupref = useRef()
     const dispatch = useDispatch()
-    // const { age, price, color, size, category } = state
 
     const [dropdown, setDropdown] = useState({
         filter: true,
@@ -24,27 +23,18 @@ const Shop = () => {
     })
 
     const [filterValue, setFilterValue] = useState({
-        agegroup: state?.age || "all",
+        agegroup: state?.age || "men",
         price: state?.price || "200",
-        color: state?.color || "all",
-        size: state?.size || "all",
+        color: state?.color || "blue",
+        size: state?.size || "m",
         category: state?.category || "Jacket"
     })
 
-    const colors = ["blue", "red", "green", "yellow", "all"]
+    const colors = ["blue", "red", "green", "yellow"]
 
-    const sizes = ["s", "m", "l", "xl", "xxl", "all"]
+    const sizes = ["s", "m", "l", "xl", "xxl"]
 
-    const agegroup = ["men", "women", "children", "all"]
-
-    const categoryhandler = (category) => {
-        setFilterValue((prev) => {
-            return {
-                ...prev,
-                agegroup: category
-            }
-        })
-    }
+    const agegroup = ["men", "women", "children"]
 
     const func = () => { dispatch(getProduct(filterValue)) }
     useEffect(() => {
@@ -54,6 +44,7 @@ const Shop = () => {
             setDropdown({ ...dropdown, filter: true })
         }
     }, [windowWidth])
+
     useEffect(() => {
         func()
         // eslint-disable-next-line
@@ -99,12 +90,10 @@ const Shop = () => {
                                         <div className=' cursor-pointer'><FaAngleDown className={`  ${dropdown.category ? "rotate-0" : "-rotate-90"} duration-300`} /></div>
                                     </div>
 
-                                    {/* ${dropdown.category ? `h-[${agegroupref.current.clientHeight}px] duration-300` : "h-0"} */}
-
                                     <div style={{ height: dropdown.category ? agegroupref?.current?.scrollHeight + "px" : "0px" }} ref={agegroupref} className={` duration-300 overflow-hidden  mt-1 md:mt-3 flex flex-wrap gap-4 mx-2`}>
                                         {agegroup.map((category, index) => {
                                             return (
-                                                <button type='button' onClick={() => categoryhandler(category)} key={index} className={` border rounded px-2 ${category === filterValue.agegroup ? " bg-blue-400 text-white font-semibold" : " text-black  "}`}>{category}</button>
+                                                <button type='button' onClick={() => setFilterValue((prev) => ({ ...prev, agegroup: prev.agegroup === category ? "all" : category }))} key={index} className={` border rounded px-2 ${category === filterValue.agegroup ? " bg-blue-400 text-white font-semibold" : " text-black  "}`}>{category}</button>
                                             )
                                         })}
                                     </div>
@@ -141,7 +130,7 @@ const Shop = () => {
                                     <div className={` h-0 duration-300 overflow-hidden ${dropdown.color && " h-12"}  flex justify-center my-2 gap-6`}>
                                         {colors.map((colordiv, index) => {
                                             return (
-                                                <button style={{ color: colordiv === filterValue.color && colordiv }} type='button' onClick={() => setFilterValue({ ...filterValue, color: colordiv })} key={index} className={` duration-300 font-semibold cursor-pointer ${colordiv === filterValue.color ? ` text-black` : " text-gray-300"} capitalize `}>{colordiv}
+                                                <button style={{ color: colordiv === filterValue.color && colordiv }} type='button' onClick={() => setFilterValue((prev) => ({ ...prev, color: prev.color === colordiv ? "all" : colordiv }))} key={index} className={` duration-300 font-semibold cursor-pointer ${colordiv === filterValue.color ? ` text-black` : " text-gray-300"} capitalize `}>{colordiv}
                                                 </button>
                                             )
                                         })}
@@ -162,7 +151,7 @@ const Shop = () => {
                                             return (
                                                 <div className=' flex flex-col items-center capitalize'>
                                                     <div>{size}</div>
-                                                    <button type='button' onClick={() => setFilterValue({ ...filterValue, size: size })} key={index} className={`w-3 h-3 mt-1 ${size === filterValue.size ? " bg-blue-500 duration-300  font-semibold" : " bg-gray-200"} rounded-full`}></button>
+                                                    <button type='button' onClick={() => setFilterValue((prev) => ({ ...prev, size: prev.size === size ? "all" : size }))} key={index} className={`w-3 h-3 mt-1 ${size === filterValue.size ? " bg-blue-500 duration-300  font-semibold" : " bg-gray-200"} rounded-full`}></button>
                                                 </div>
                                             )
                                         })}

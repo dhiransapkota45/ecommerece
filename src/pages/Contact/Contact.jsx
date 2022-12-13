@@ -40,11 +40,11 @@ const Contact = () => {
                 <form onSubmit={formsubmithandler} className=' w-full'>
 
                     <div className=' sm:grid grid-cols-2 gap-6 my-5'>
-                        <div className='border border-gray-800 my-5 sm:my-0 col-span-1'>
-                            <input className=' outline-none p-2 ' type="text" placeholder='first name' />
+                        <div className=' my-5 sm:my-0 col-span-1'>
+                            <input className='border border-gray-800 outline-none p-2 w-full ' type="text" placeholder='first name' />
                         </div>
-                        <div className='border border-gray-800 col-span-1'>
-                            <input className=' outline-none p-2 ' type="text" placeholder='Last name' />
+                        <div className=' col-span-1'>
+                            <input className=' border border-gray-800 outline-none p-2 w-full ' type="text" placeholder='Last name' />
                         </div>
                     </div>
                     <input className=' mb-5 border border-gray-800 outline-none p-2 w-full' type="text" placeholder='Your email' />

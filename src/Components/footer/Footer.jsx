@@ -67,7 +67,7 @@ const Footer = () => {
                                 icons.map((icon, index) => {
                                     return (
                                         // eslint-disable-next-line react/jsx-no-target-blank
-                                        <a target="_blank" href={icon.link} className="p-2 border hover:bg-white duration-300 cursor-pointer hover:text-black"  >{icon.icon}</a>
+                                        <a key={index} target="_blank" href={icon.link} className="p-2 border hover:bg-white duration-300 cursor-pointer hover:text-black"  >{icon.icon}</a>
                                     )
                                 })
                             }

@@ -26,13 +26,17 @@ export const signupUser = (data, checkbox, navigate) => {
     instance
       .post(`/signup`, data)
       .then((response) => {
+        console.log(response);
         if (checkbox) {
           localStorage.setItem("authToken", response.data.authToken);
+          localStorage.setItem("refreshToken", response.data.refreshToken);
           navigate("/account");
         } else {
+          sessionStorage.setItem("refreshToken", response.data.refreshToken);
           sessionStorage.setItem("authToken", response.data.authToken);
           navigate("/account");
         }
+        window.location.reload();
         dispatch(signupSuccess());
       })
       .catch((error) => {

@@ -31,7 +31,6 @@ const getCartReducer = (state = initialState, action) => {
       return { ...state, cartdetails: data, cartcount: state.cartcount - 1 };
 
     case "getcart/addtocarticon":
-      console.log("log4");
       return { ...state, cartcount: state.cartcount + 1 };
     default:
       return { ...state };

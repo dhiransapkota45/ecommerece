@@ -38,7 +38,7 @@ const Shop = () => {
 
     const func = () => { dispatch(getProduct(filterValue)) }
     useEffect(() => {
-        if (windowWidth <= 767) {
+        if (windowWidth <= 1023) {
             setDropdown({ ...dropdown, filter: false })
         } else {
             setDropdown({ ...dropdown, filter: true })
@@ -72,7 +72,7 @@ const Shop = () => {
 
             {/* main part */}
             <div className=' w-full my-12 p-8'>
-                <div className='  md:grid gap-6 grid-cols-12 '>
+                <div className='  lg:grid gap-6 grid-cols-12 '>
                     <form className='col-span-3 sticky top-[66px] md:top-[80px] h-fit border-b z-20 px-4 bg-white py-5'>
                         <div className=' font-bold text-3xl mb-4'>{filterValue.category} </div>
                         <div onClick={() => setDropdown({ ...dropdown, filter: !dropdown.filter })} className='pb-4 mb-3 cursor-pointer flex justify-between '>

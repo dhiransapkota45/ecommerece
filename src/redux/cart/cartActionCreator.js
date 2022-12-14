@@ -20,6 +20,7 @@ const addtoCartFailure = (error) => {
 };
 
 export const addtoCart = (data, id, addToCartIcon, deleteHandler = null) => {
+  console.log(data);
   return async (dispatch) => {
     dispatch(addtoCartPending());
     try {

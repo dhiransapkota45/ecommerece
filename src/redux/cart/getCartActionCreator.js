@@ -47,6 +47,13 @@ export const decrement = (id) => {
   };
 };
 
+export const totalCartPrice = (price) => {
+  return {
+    type: "getcart/total",
+    payload: price,
+  };
+};
+
 export const getCart = () => {
   return async (dispatch) => {
     dispatch(getCartPending());

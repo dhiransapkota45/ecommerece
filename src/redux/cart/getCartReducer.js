@@ -3,6 +3,7 @@ const initialState = {
   error: false,
   cartdetails: [],
   cartcount: 0,
+  total: 0,
 };
 
 const getCartReducer = (state = initialState, action) => {
@@ -45,6 +46,15 @@ const getCartReducer = (state = initialState, action) => {
         .cartItems.quantity--;
       return { ...state, cartdetails: details2 };
 
+    case "getcart/total":
+      // const cartdata = state.cartdetails;
+      // const totalpaisa = cartdata.reduce((accumulator, currentValue) => {
+      //   return (
+      //     accumulator +
+      //     currentValue.cartItems.quantity * currentValue.productdetails.price
+      //   );
+      // }, 0);
+      return { ...state, total: state.total + action.payload };
     default:
       return { ...state };
   }

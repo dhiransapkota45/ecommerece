@@ -22,6 +22,7 @@ import { getCart } from "./redux/cart/getCartActionCreator";
 import { useEffect } from "react";
 import Success from "./pages/Checkout/Success";
 import Cancel from "./pages/Checkout/Cancel";
+import Stripe from "./stripe/StripeContainer";
 
 function App() {
   const cartcount = useSelector((store) => store.getcart.cartcount);
@@ -33,6 +34,7 @@ function App() {
     <div>
       <Navbar />
       <Toastify />
+      <Stripe />
       <Routes>
         <Route path="/">
           <Route path="" element={<Home />} />

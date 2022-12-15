@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RiEdit2Line } from "react-icons/ri"
 import { NavLink } from 'react-router-dom';
 import Loader from '../../Components/Common/Loader';
+import { totalCartPrice } from '../../redux/cart/getCartActionCreator';
 
 const Products = () => {
     const [loader, setLoader] = useState(false)
@@ -39,9 +40,11 @@ const Products = () => {
     }
 
     useEffect(() => {
-        setTotal(cartdetails.reduce((accumulator, currentValue) => {
+        const totalpaisa = cartdetails.reduce((accumulator, currentValue) => {
             return accumulator + currentValue.cartItems.quantity * currentValue.productdetails.price
-        }, 0))
+        }, 0)
+        setTotal(totalpaisa)
+        dispatch(totalCartPrice(totalpaisa))
     }, [cartdetails])
 
     return (

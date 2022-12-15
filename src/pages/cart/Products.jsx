@@ -9,8 +9,10 @@ import { deleteOneCartItem } from "../../redux/cart/getCartActionCreator"
 import { useDispatch, useSelector } from 'react-redux';
 import { RiEdit2Line } from "react-icons/ri"
 import { NavLink } from 'react-router-dom';
+import Loader from '../../Components/Common/Loader';
 
 const Products = () => {
+    const [loader, setLoader] = useState(false)
     const dispatch = useDispatch()
     const cartdetails = useSelector((store) => store.getcart.cartdetails)
 
@@ -23,6 +25,16 @@ const Products = () => {
             successToast(response.data.msg)
         } else {
             errorToast(response.data.msg)
+        }
+    }
+
+    const checkout = async () => {
+        setLoader(true)
+        const response = await instance.post("/checkout", { cartdetails })
+        console.log(response);
+        if (response.status === 200) {
+            window.location = response?.data?.url
+            setLoader(false)
         }
     }
 
@@ -41,40 +53,40 @@ const Products = () => {
                     {
                         cartdetails?.map((data, index) => {
                             return (
-                            <div key={index} className=' bg-gray-100 px-4 my-4 py-4'>
-                                <div className=' flex justify-between flex-wrap'>
-                                    <img className=' w-24 h-24 object-cover' src={data.productdetails.image} alt="" />
-                                    <div className=''>
-                                        <div className=' font-semibold text-lg'>
-                                            {data.productdetails.name}
+                                <div key={index} className=' bg-gray-100 px-4 my-4 py-4'>
+                                    <div className=' flex justify-between flex-wrap'>
+                                        <img className=' w-24 h-24 object-cover' src={data.productdetails.image} alt="" />
+                                        <div className=''>
+                                            <div className=' font-semibold text-lg'>
+                                                {data.productdetails.name}
+                                            </div>
+                                            <div className=' text-gray-400 text-sm capitalize'>
+                                                Color : {data.cartItems.color}
+                                            </div>
                                         </div>
-                                        <div className=' text-gray-400 text-sm capitalize'>
-                                            Color : {data.cartItems.color}
+                                        <div>
+                                            <div className='font-semibold text-lg'>${data.productdetails.price} USD</div>
+                                            <div className='text-gray-400 text-sm'>Price</div>
+                                        </div>
+
+                                        <div>
+                                            <div className=' font-semibold text-lg'>{data.productdetails.stock}</div>
+                                            <div className='text-gray-400 text-sm'>In Stock</div>
+
+                                        </div>
+                                        <div className=' flex gap-1'>
+                                            <button onClick={() => deleteCartitems(data.productdetails._id)} className='  text-gray-400 w-8 h-8 rounded-full hover:bg-red-100 duration-300  flex justify-center items-center hover:text-red-600'>
+                                                <RiDeleteBin6Line />
+                                            </button>
+
+                                            <NavLink to={`/item/${data.productdetails._id}`} state={{ ...data.cartItems }} className='text-gray-400 w-8 h-8 rounded-full hover:bg-orange-100 duration-300  flex justify-center items-center hover:text-orange-600'><RiEdit2Line /></NavLink>
+
                                         </div>
                                     </div>
-                                    <div>
-                                        <div className='font-semibold text-lg'>${data.productdetails.price} USD</div>
-                                        <div className='text-gray-400 text-sm'>Price</div>
-                                    </div>
-
-                                    <div>
-                                        <div className=' font-semibold text-lg'>{data.productdetails.stock}</div>
-                                        <div className='text-gray-400 text-sm'>In Stock</div>
-
-                                    </div>
-                                    <div className=' flex gap-1'>
-                                        <button onClick={() => deleteCartitems(data.productdetails._id)} className='  text-gray-400 w-8 h-8 rounded-full hover:bg-red-100 duration-300  flex justify-center items-center hover:text-red-600'>
-                                            <RiDeleteBin6Line />
-                                        </button>
-
-                                        <NavLink to={`/item/${data.productdetails._id}`} state={{...data.cartItems}} className='text-gray-400 w-8 h-8 rounded-full hover:bg-orange-100 duration-300  flex justify-center items-center hover:text-orange-600'><RiEdit2Line /></NavLink>
-
-                                    </div>
+                                    <Counter index={index} setTotal={setTotal} count={data.cartItems.quantity} {...data.productdetails} />
                                 </div>
-                                <Counter setTotal={setTotal} count={data.cartItems.quantity} {...data.productdetails} />
-                            </div>
                             )
-                    })
+                        })
                     }
                 </div>
             }
@@ -86,7 +98,14 @@ const Products = () => {
                             <div className=' font-semibold'>${total}USD</div>
                         </div>
                         <div className=' flex justify-end '>
-                            <button className=' btn w-36 font-bold'>Checkout</button>
+                            <button onClick={checkout} className=' btn w-36 font-bold'>
+                                {loader ?
+                                    <div className=' flex justify-center'>
+                                        <Loader />
+                                    </div>
+                                    :
+                                    "Checkout"}
+                            </button>
                         </div>
                     </div>
                 </div>

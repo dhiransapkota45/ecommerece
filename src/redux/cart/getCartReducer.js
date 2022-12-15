@@ -32,6 +32,19 @@ const getCartReducer = (state = initialState, action) => {
 
     case "getcart/addtocarticon":
       return { ...state, cartcount: state.cartcount + 1 };
+
+    case "getcart/increment":
+      let details = state.cartdetails;
+      details.find((item) => item.productdetails._id === action.payload)
+        .cartItems.quantity++;
+      return { ...state, cartdetails: details };
+
+    case "getcart/decrement":
+      let details2 = state.cartdetails;
+      details2.find((item) => item.productdetails._id === action.payload)
+        .cartItems.quantity--;
+      return { ...state, cartdetails: details2 };
+
     default:
       return { ...state };
   }

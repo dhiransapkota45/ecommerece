@@ -20,6 +20,8 @@ import "./assets/css/loader.css"
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "./redux/cart/getCartActionCreator";
 import { useEffect } from "react";
+import Success from "./pages/Checkout/Success";
+import Cancel from "./pages/Checkout/Cancel";
 
 function App() {
   const cartcount = useSelector((store) => store.getcart.cartcount);
@@ -43,6 +45,8 @@ function App() {
           <Route path="item/:id" element={<Item />} />
           <Route path="cart" element={<Cart />} />
           <Route path="wishlist" element={<Wishlist />} />
+          <Route path="success" element={<Success />} />
+          <Route path="cancel" element={<Cancel />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>

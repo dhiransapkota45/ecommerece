@@ -33,6 +33,20 @@ export const addToCartIcon = () => {
   };
 };
 
+export const increment = (id) => {
+  return {
+    type: "getcart/increment",
+    payload: id,
+  };
+};
+
+export const decrement = (id) => {
+  return {
+    type: "getcart/decrement",
+    payload: id,
+  };
+};
+
 export const getCart = () => {
   return async (dispatch) => {
     dispatch(getCartPending());

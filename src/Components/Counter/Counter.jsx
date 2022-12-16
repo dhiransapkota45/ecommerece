@@ -3,20 +3,18 @@ import { HiOutlineMinus } from "react-icons/hi"
 import { GoPlus } from "react-icons/go"
 import { useDispatch } from 'react-redux'
 import { decrement, increment } from '../../redux/cart/getCartActionCreator'
+import { incrementCartPrice, decrementCartPrice } from "../../redux/cart/getCartActionCreator"
 
-const Counter = ({ count, stock, _id, setTotal, price, index }) => {
+const Counter = ({ count, stock, _id,  price, index }) => {
     const dispatch = useDispatch()
-    // const [value, setValue] = useState(count)
     const onIncrementHandler = () => {
-        // setValue(value + 1)
         dispatch(increment(_id))
-        setTotal((prev) => prev + price)
+        dispatch(incrementCartPrice(price))
     }
 
     const onDecrementHandler = () => {
-        // setValue(value - 1)
         dispatch(decrement(_id))
-        setTotal((prev) => prev - price)
+        dispatch(decrementCartPrice(price))
     }
 
     return (

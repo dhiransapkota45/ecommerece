@@ -54,6 +54,20 @@ export const totalCartPrice = (price) => {
   };
 };
 
+export const incrementCartPrice = (value) => {
+  return {
+    type: "getcart/incrementcartprice",
+    payload: value,
+  };
+};
+
+export const decrementCartPrice = (value) => {
+  return {
+    type: "getcart/decrementcartprice",
+    payload: value,
+  };
+};
+
 export const getCart = () => {
   return async (dispatch) => {
     dispatch(getCartPending());

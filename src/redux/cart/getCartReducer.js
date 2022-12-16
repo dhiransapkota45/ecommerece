@@ -47,14 +47,18 @@ const getCartReducer = (state = initialState, action) => {
       return { ...state, cartdetails: details2 };
 
     case "getcart/total":
-      // const cartdata = state.cartdetails;
-      // const totalpaisa = cartdata.reduce((accumulator, currentValue) => {
-      //   return (
-      //     accumulator +
-      //     currentValue.cartItems.quantity * currentValue.productdetails.price
-      //   );
-      // }, 0);
+      const cartdetails = state.cartdetails;
+      const totalpaisa = cartdetails.reduce((accumulator, currentValue) => {
+        return (
+          accumulator +
+          currentValue.cartItems.quantity * currentValue.productdetails.price
+        );
+      }, 0);
+      return { ...state, total: totalpaisa };
+    case "getcart/incrementcartprice":
       return { ...state, total: state.total + action.payload };
+    case "getcart/decrementcartprice":
+      return { ...state, total: state.total - action.payload };
     default:
       return { ...state };
   }

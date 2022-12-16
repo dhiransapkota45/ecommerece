@@ -15,7 +15,7 @@ import Cart from "./pages/Cart/Cart";
 import PageNotFound from "./pages/Error/PageNotFound";
 import Wishlist from "./pages/Wishlist/Wishlist";
 
-import "./assets/css/loader.css"
+import "./assets/css/loader.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "./redux/cart/getCartActionCreator";
@@ -26,15 +26,18 @@ import Stripe from "./stripe/StripeContainer";
 
 function App() {
   const cartcount = useSelector((store) => store.getcart.cartcount);
+  const stripemodal = useSelector((store) => store.stripe.modal);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCart());
   }, [cartcount]);
+
   return (
     <div>
+      {stripemodal && <Stripe />}
+
       <Navbar />
       <Toastify />
-      <Stripe />
       <Routes>
         <Route path="/">
           <Route path="" element={<Home />} />

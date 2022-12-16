@@ -1,13 +1,12 @@
 import React from 'react'
-import { useEffect } from 'react'
 
 const Success = () => {
 
-  useEffect(() => {
-
-  }, [])
   return (
-    <div>Success</div>
+    <div className=' h-96'>
+      <div>Thank you for the order!</div>
+      <div>Track your products status here</div>
+    </div>
   )
 }
 

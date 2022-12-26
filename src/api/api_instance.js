@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:8000";
+const API_URL = "https://ecommerce-application-zkwo.onrender.com";
 
 const instance = axios.create({
   baseURL: API_URL,

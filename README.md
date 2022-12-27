@@ -1,1 +1,1 @@
-###checkout <a>https://ecommerce-dhrian.netlify.app</a> for this project
+checkout <a>https://ecommerce-dhrian.netlify.app</a> for this project

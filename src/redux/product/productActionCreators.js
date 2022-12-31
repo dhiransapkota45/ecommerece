@@ -19,7 +19,7 @@ const productFailure = () => {
     type: "product/failure",
   };
 };
-const baseUrl = `http://localhost:8000`;
+// const baseUrl = `http://localhost:8000`;
 
 export const getProduct = (filterValue) => {
   console.log(filterValue);
@@ -33,7 +33,7 @@ export const getProduct = (filterValue) => {
   return function (dispatch) {
     dispatch(productPending());
     instance
-      .post(`${baseUrl}/allproduct`, dataforbackend)
+      .post(`/allproduct`, dataforbackend)
       .then((response) => {
         console.log(response);
         dispatch(productSuccess(response.data.product));

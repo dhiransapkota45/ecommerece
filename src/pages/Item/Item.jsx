@@ -125,8 +125,8 @@ const Item = () => {
                     </div>
 
                     <div className=' grid grid-cols-12 gap-2'>
-                        <button type='button' className=' p-2 col-span-9 lg:col-span-11 font-bold bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] text-white'>Checkout</button>
-                        <button disabled={activebuttons.color === "" || activebuttons.size === ""} type='submit' className={`${(activebuttons.color === "" || activebuttons.size === "") ? "bg-gradient-to-t from-[#d4a8f5] to-[#8f97e0]" : "bg-gradient-to-t from-[#AB40FF] to-[#7D89FF]"} col-span-3 lg:col-span-1  text-white text-2xl flex justify-center items-center duration-300 `}><FaShoppingCart /></button>
+                        {/* <button type='button' className=' p-2 col-span-9 lg:col-span-11 font-bold bg-gradient-to-t from-[#AB40FF] to-[#7D89FF] text-white'>Checkout</button> */}
+                        <button disabled={activebuttons.color === "" || activebuttons.size === ""} type='submit' className={`${(activebuttons.color === "" || activebuttons.size === "") ? "bg-gradient-to-t from-[#d4a8f5] to-[#8f97e0]" : "bg-gradient-to-t from-[#AB40FF] to-[#7D89FF]"} col-span-12  text-white text-2xl flex justify-center items-center duration-300 `}><FaShoppingCart /></button>
                     </div>
 
                 </form>
